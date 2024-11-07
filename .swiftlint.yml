@@ -1,0 +1,42 @@
+disabled_rules: # 제외 룰
+    - trailing_whitespace
+    - trailing_comma # 배열 마지막 아이템에 ,(comma) 무시
+    - nesting # 중첩타입
+    - empty_enum_arguments
+    - control_statement
+    - unneeded_override
+    - void_return
+    - identifier_name
+opt_in_rules:
+    - empty_string
+    - empty_count # isEmpty 사용
+    - switch_case_on_newline # case문은 새로운 줄에서 시작
+    - force_unwrapping # 강제 언래핑
+included: # 린트 검사에 포함할 파일 경로
+    - BuddyBuddy
+excluded: # 린트 과정에서 무시할 파일 경로. `included`보다 우선순위 높음
+    - BuddyBuddy/App/AppDelegate.swift
+    - BuddyBuddy/App/SceneDelegate.swift
+    
+force_cast: warning # 강제 타입 캐스팅
+force_try:
+  severity: warning # 강제 try!
+
+function_body_length:
+    warning: 170
+    error: 200
+    
+type_body_length: # 클래스, 구조체, 열거형의 본문 길이 제한
+    warning: 300
+    error: 500
+    
+file_length: # 파일 코드 라인 제한
+    warning: 600
+    error: 1000
+    
+line_length: # 한 라인에서의 코드 길이 제한
+    warning: 100
+    error: 400
+    ignores_comments: true
+    ignores_urls: true
+
