@@ -1,0 +1,58 @@
+{
+  "workspace_id": "70b565b8-9ca1-483f-b812-15d3e57b5cf4",
+  "name": "TED Study",
+  "description": null,
+  "coverImage": "/static/workspaceCoverImages/1731401090530.png",
+  "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+  "createdAt": "2024-11-12T08:44:50.537Z",
+  "channels": [
+    {
+      "channel_id": "caf9c1ae-5891-47b3-b404-84a57489f8c2",
+      "name": "씩씩이",
+      "description": null,
+      "coverImage": null,
+      "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "createdAt": "2024-11-28T14:45:36.600Z"
+    },
+    {
+      "channel_id": "cf859a25-7e4b-4f4d-871c-9754c1d87f98",
+      "name": "화이팅",
+      "description": null,
+      "coverImage": null,
+      "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "createdAt": "2024-11-28T12:00:59.303Z"
+    }
+  ],
+  "workspaceMembers": [
+    {
+      "user_id": "6ac3def1-3d6a-4f4d-9ba3-7cb7af303234",
+      "email": "compose4@coffee.com",
+      "nickname": "송송이",
+      "profileImage": "/static/profiles/1733389640397.png"
+    },
+    {
+      "user_id": "dac913b5-7082-4dac-885e-3e99cae8e722",
+      "email": "compose3@coffee.com",
+      "nickname": "씽씽이",
+      "profileImage": null
+    },
+    {
+      "user_id": "0edf1891-c605-4fbb-82cb-e50bca521137",
+      "email": "compose2@coffee.com",
+      "nickname": "씩씩이",
+      "profileImage": "/static/profiles/1733239443870.png"
+    },
+    {
+      "user_id": "14dfc748-0980-4fbb-9c28-3b5db9d00f46",
+      "email": "compose1@coffee.com",
+      "nickname": "싹싹이",
+      "profileImage": "/static/profiles/1732264170479.png"
+    },
+    {
+      "user_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "email": "compose@coffee.com",
+      "nickname": "쑥쑥이",
+      "profileImage": "/static/profiles/1733239075734.jpeg"
+    }
+  ]
+}

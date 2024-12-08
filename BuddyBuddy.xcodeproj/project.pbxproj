@@ -84,7 +84,12 @@
 		C91F673F2CEF2F6F00C84265 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91F673E2CEF2F6F00C84265 /* SearchResult.swift */; };
 		C91F67412CEF2F8700C84265 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91F67402CEF2F8700C84265 /* SearchState.swift */; };
 		C91F67442CF098C900C84265 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91F67432CF098C900C84265 /* Data+.swift */; };
-		C935340F2D05CF89009E0520 /* BuddyBuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935340E2D05CF89009E0520 /* BuddyBuddyTests.swift */; };
+		C93534412D060EBF009E0520 /* BuddyBuddy_PlaygroundUseCase_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93534402D060EBF009E0520 /* BuddyBuddy_PlaygroundUseCase_Test.swift */; };
+		C935344C2D06244B009E0520 /* MockPlaygroundRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935344B2D06244B009E0520 /* MockPlaygroundRepository.swift */; };
+		C93534502D063098009E0520 /* FetchWorkspaceInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = C935344F2D063098009E0520 /* FetchWorkspaceInfo.json */; };
+		C93534512D063098009E0520 /* FetchWorkspaceInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = C935344F2D063098009E0520 /* FetchWorkspaceInfo.json */; };
+		C93534532D063132009E0520 /* BuddyWorkspaceSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = C93534522D063132009E0520 /* BuddyWorkspaceSearch.json */; };
+		C93534542D063132009E0520 /* BuddyWorkspaceSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = C93534522D063132009E0520 /* BuddyWorkspaceSearch.json */; };
 		C957EA672CE2095300B62A2A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C957EA662CE2095300B62A2A /* UIViewController+.swift */; };
 		C957EA692CE20C2300B62A2A /* SearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C957EA682CE20C2300B62A2A /* SearchEmptyView.swift */; };
 		C957EA6F2CE21F8A00B62A2A /* RecentSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C957EA6E2CE21F8A00B62A2A /* RecentSearchTableView.swift */; };
@@ -219,7 +224,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C93534102D05CF89009E0520 /* PBXContainerItemProxy */ = {
+		C935343B2D060EB6009E0520 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C9C279F82CDA315500243744 /* Project object */;
 			proxyType = 1;
@@ -309,8 +314,11 @@
 		C91F673E2CEF2F6F00C84265 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		C91F67402CEF2F8700C84265 /* SearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchState.swift; sourceTree = "<group>"; };
 		C91F67432CF098C900C84265 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
-		C935340C2D05CF89009E0520 /* BuddyBuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuddyBuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C935340E2D05CF89009E0520 /* BuddyBuddyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyBuddyTests.swift; sourceTree = "<group>"; };
+		C93534372D060EB5009E0520 /* BuddyBuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuddyBuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C93534402D060EBF009E0520 /* BuddyBuddy_PlaygroundUseCase_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyBuddy_PlaygroundUseCase_Test.swift; sourceTree = "<group>"; };
+		C935344B2D06244B009E0520 /* MockPlaygroundRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaygroundRepository.swift; sourceTree = "<group>"; };
+		C935344F2D063098009E0520 /* FetchWorkspaceInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FetchWorkspaceInfo.json; sourceTree = "<group>"; };
+		C93534522D063132009E0520 /* BuddyWorkspaceSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BuddyWorkspaceSearch.json; sourceTree = "<group>"; };
 		C957EA662CE2095300B62A2A /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		C957EA682CE20C2300B62A2A /* SearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyView.swift; sourceTree = "<group>"; };
 		C957EA6E2CE21F8A00B62A2A /* RecentSearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchTableView.swift; sourceTree = "<group>"; };
@@ -446,7 +454,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C93534092D05CF89009E0520 /* Frameworks */ = {
+		C93534342D060EB5009E0520 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1096,12 +1104,39 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		C935340D2D05CF89009E0520 /* BuddyBuddyTests */ = {
+		C93534382D060EB6009E0520 /* BuddyBuddyTests */ = {
 			isa = PBXGroup;
 			children = (
-				C935340E2D05CF89009E0520 /* BuddyBuddyTests.swift */,
+				C93534552D06325A009E0520 /* UseCaseTest */,
+				C935344A2D06243F009E0520 /* MockRepository */,
+				C93534452D061D5E009E0520 /* MockData */,
 			);
 			path = BuddyBuddyTests;
+			sourceTree = "<group>";
+		};
+		C93534452D061D5E009E0520 /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				C93534522D063132009E0520 /* BuddyWorkspaceSearch.json */,
+				C935344F2D063098009E0520 /* FetchWorkspaceInfo.json */,
+			);
+			path = MockData;
+			sourceTree = "<group>";
+		};
+		C935344A2D06243F009E0520 /* MockRepository */ = {
+			isa = PBXGroup;
+			children = (
+				C935344B2D06244B009E0520 /* MockPlaygroundRepository.swift */,
+			);
+			path = MockRepository;
+			sourceTree = "<group>";
+		};
+		C93534552D06325A009E0520 /* UseCaseTest */ = {
+			isa = PBXGroup;
+			children = (
+				C93534402D060EBF009E0520 /* BuddyBuddy_PlaygroundUseCase_Test.swift */,
+			);
+			path = UseCaseTest;
 			sourceTree = "<group>";
 		};
 		C9B0E2782CFCE16B000AA052 /* AuthEntity */ = {
@@ -1136,7 +1171,7 @@
 				DC213A7F2CE1EEAE00E2A2F7 /* Secrets.xcconfig */,
 				C908285E2CDA72B50096BA0D /* .swiftlint.yml */,
 				C9C27A022CDA315500243744 /* BuddyBuddy */,
-				C935340D2D05CF89009E0520 /* BuddyBuddyTests */,
+				C93534382D060EB6009E0520 /* BuddyBuddyTests */,
 				C9C27A012CDA315500243744 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1145,7 +1180,7 @@
 			isa = PBXGroup;
 			children = (
 				C9C27A002CDA315500243744 /* BuddyBuddy.app */,
-				C935340C2D05CF89009E0520 /* BuddyBuddyTests.xctest */,
+				C93534372D060EB5009E0520 /* BuddyBuddyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1396,22 +1431,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C935340B2D05CF89009E0520 /* BuddyBuddyTests */ = {
+		C93534362D060EB5009E0520 /* BuddyBuddyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C93534142D05CF89009E0520 /* Build configuration list for PBXNativeTarget "BuddyBuddyTests" */;
+			buildConfigurationList = C935343D2D060EB6009E0520 /* Build configuration list for PBXNativeTarget "BuddyBuddyTests" */;
 			buildPhases = (
-				C93534082D05CF89009E0520 /* Sources */,
-				C93534092D05CF89009E0520 /* Frameworks */,
-				C935340A2D05CF89009E0520 /* Resources */,
+				C93534332D060EB5009E0520 /* Sources */,
+				C93534342D060EB5009E0520 /* Frameworks */,
+				C93534352D060EB5009E0520 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C93534112D05CF89009E0520 /* PBXTargetDependency */,
+				C935343C2D060EB6009E0520 /* PBXTargetDependency */,
 			);
 			name = BuddyBuddyTests;
 			productName = BuddyBuddyTests;
-			productReference = C935340C2D05CF89009E0520 /* BuddyBuddyTests.xctest */;
+			productReference = C93534372D060EB5009E0520 /* BuddyBuddyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		C9C279FF2CDA315500243744 /* BuddyBuddy */ = {
@@ -1457,7 +1492,7 @@
 				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
-					C935340B2D05CF89009E0520 = {
+					C93534362D060EB5009E0520 = {
 						CreatedOnToolsVersion = 15.3;
 						TestTargetID = C9C279FF2CDA315500243744;
 					};
@@ -1492,16 +1527,18 @@
 			projectRoot = "";
 			targets = (
 				C9C279FF2CDA315500243744 /* BuddyBuddy */,
-				C935340B2D05CF89009E0520 /* BuddyBuddyTests */,
+				C93534362D060EB5009E0520 /* BuddyBuddyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C935340A2D05CF89009E0520 /* Resources */ = {
+		C93534352D060EB5009E0520 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C93534542D063132009E0520 /* BuddyWorkspaceSearch.json in Resources */,
+				C93534512D063098009E0520 /* FetchWorkspaceInfo.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1513,10 +1550,12 @@
 				C91BBC092CE396B6001EFC70 /* Pretendard-Medium.otf in Resources */,
 				DC213A802CE1EEAF00E2A2F7 /* Secrets.xcconfig in Resources */,
 				C908285F2CDA72B50096BA0D /* .swiftlint.yml in Resources */,
+				C93534532D063132009E0520 /* BuddyWorkspaceSearch.json in Resources */,
 				C9C27A102CDA315600243744 /* Assets.xcassets in Resources */,
 				C908280E2CDA650B0096BA0D /* SettingViewEmpty in Resources */,
 				C90828662CDA780D0096BA0D /* Localizable.xcstrings in Resources */,
 				C9C27A132CDA315600243744 /* Base in Resources */,
+				C93534502D063098009E0520 /* FetchWorkspaceInfo.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1544,11 +1583,12 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C93534082D05CF89009E0520 /* Sources */ = {
+		C93534332D060EB5009E0520 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C935340F2D05CF89009E0520 /* BuddyBuddyTests.swift in Sources */,
+				C93534412D060EBF009E0520 /* BuddyBuddy_PlaygroundUseCase_Test.swift in Sources */,
+				C935344C2D06244B009E0520 /* MockPlaygroundRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1749,10 +1789,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C93534112D05CF89009E0520 /* PBXTargetDependency */ = {
+		C935343C2D060EB6009E0520 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C9C279FF2CDA315500243744 /* BuddyBuddy */;
-			targetProxy = C93534102D05CF89009E0520 /* PBXContainerItemProxy */;
+			targetProxy = C935343B2D060EB6009E0520 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1768,7 +1808,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		C93534122D05CF89009E0520 /* Debug */ = {
+		C935343E2D060EB6009E0520 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1776,22 +1816,18 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T4W7695R5C;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.buddy-iOS.BuddyBuddyTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BuddyBuddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BuddyBuddy";
 			};
 			name = Debug;
 		};
-		C93534132D05CF89009E0520 /* Release */ = {
+		C935343F2D060EB6009E0520 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1799,17 +1835,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T4W7695R5C;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.buddy-iOS.BuddyBuddyTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BuddyBuddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BuddyBuddy";
 			};
 			name = Release;
@@ -2007,11 +2039,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C93534142D05CF89009E0520 /* Build configuration list for PBXNativeTarget "BuddyBuddyTests" */ = {
+		C935343D2D060EB6009E0520 /* Build configuration list for PBXNativeTarget "BuddyBuddyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C93534122D05CF89009E0520 /* Debug */,
-				C93534132D05CF89009E0520 /* Release */,
+				C935343E2D060EB6009E0520 /* Debug */,
+				C935343F2D060EB6009E0520 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchResult {
+struct SearchResult: Equatable {
     let state: SearchState
     let id: String
     let name: String

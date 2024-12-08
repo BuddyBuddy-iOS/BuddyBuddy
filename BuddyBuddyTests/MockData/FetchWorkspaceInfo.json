@@ -1,0 +1,168 @@
+{
+  "workspace_id": "70b565b8-9ca1-483f-b812-15d3e57b5cf4",
+  "name": "TED Study",
+  "description": null,
+  "coverImage": "/static/workspaceCoverImages/1731401090530.png",
+  "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+  "createdAt": "2024-11-12T08:44:50.537Z",
+  "channels": [
+    {
+      "channel_id": "f2b0541a-1078-428c-91a0-815359c175c3",
+      "name": "감자도리",
+      "description": "도리도리도리도리 감자 도리",
+      "coverImage": null,
+      "owner_id": "14dfc748-0980-4fbb-9c28-3b5db9d00f46",
+      "createdAt": "2024-11-30T07:54:49.737Z"
+    },
+    {
+      "channel_id": "f16618ec-42e2-436c-b20b-91502e6d458c",
+      "name": "abcd",
+      "description": "알파벳 배우기",
+      "coverImage": null,
+      "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "createdAt": "2024-11-28T13:41:33.003Z"
+    },
+    {
+      "channel_id": "cf859a25-7e4b-4f4d-871c-9754c1d87f98",
+      "name": "화이팅",
+      "description": null,
+      "coverImage": null,
+      "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "createdAt": "2024-11-28T12:00:59.303Z"
+    },
+    {
+      "channel_id": "caf9c1ae-5891-47b3-b404-84a57489f8c2",
+      "name": "씩씩이",
+      "description": null,
+      "coverImage": null,
+      "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "createdAt": "2024-11-28T14:45:36.600Z"
+    },
+    {
+      "channel_id": "c2288caf-f1e3-4a75-b9b5-9b41fbd1df46",
+      "name": "위키드로 영어 정복기",
+      "description": "위키드 보고 싶어요",
+      "coverImage": "/static/channelCoverImages/1732552146946.jpeg",
+      "owner_id": "0edf1891-c605-4fbb-82cb-e50bca521137",
+      "createdAt": "2024-11-25T16:29:06.956Z"
+    },
+    {
+      "channel_id": "bc4355f2-c72f-4b48-8d7e-79029078e1ba",
+      "name": "여긴 스페인어방",
+      "description": "스페인어 멋지죵?",
+      "coverImage": "/static/channelCoverImages/1732555392427.png",
+      "owner_id": "6ac3def1-3d6a-4f4d-9ba3-7cb7af303234",
+      "createdAt": "2024-11-25T17:23:12.441Z"
+    },
+    {
+      "channel_id": "a8517a84-1e6d-4ab5-97e3-fddff4842549",
+      "name": "헬로지토헬로",
+      "description": null,
+      "coverImage": null,
+      "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "createdAt": "2024-11-28T13:34:12.198Z"
+    },
+    {
+      "channel_id": "96450ff7-753e-4536-87be-40fbc7a3ed5b",
+      "name": "잡담방",
+      "description": "이 채널은 새싹 전용입니다.",
+      "coverImage": "/static/channelCoverImages/1731401258144.png",
+      "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "createdAt": "2024-11-12T08:47:38.190Z"
+    },
+    {
+      "channel_id": "8bc0e021-444b-4183-9353-6ab9739c2115",
+      "name": "고고",
+      "description": null,
+      "coverImage": null,
+      "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "createdAt": "2024-11-28T15:59:02.546Z"
+    },
+    {
+      "channel_id": "823cba3a-8716-4a04-b919-3567c2e13d8c",
+      "name": "야호",
+      "description": null,
+      "coverImage": null,
+      "owner_id": "0edf1891-c605-4fbb-82cb-e50bca521137",
+      "createdAt": "2024-11-28T11:23:48.591Z"
+    },
+    {
+      "channel_id": "77e3b423-ad8f-40cd-8122-a23b2f7d1743",
+      "name": "새싹",
+      "description": null,
+      "coverImage": null,
+      "owner_id": "0edf1891-c605-4fbb-82cb-e50bca521137",
+      "createdAt": "2024-11-28T10:50:12.166Z"
+    },
+    {
+      "channel_id": "611bf4ac-987a-4815-bec9-40b9def2d339",
+      "name": "영어 원서 추천",
+      "description": "영어로된 원서를 추천해주는 공간",
+      "coverImage": null,
+      "owner_id": "0edf1891-c605-4fbb-82cb-e50bca521137",
+      "createdAt": "2024-11-21T14:34:20.652Z"
+    },
+    {
+      "channel_id": "44b860d1-5f28-4942-a4e6-187db398117e",
+      "name": "일반",
+      "description": null,
+      "coverImage": null,
+      "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "createdAt": "2024-11-12T08:44:50.548Z"
+    },
+    {
+      "channel_id": "302ace89-db7a-416e-bde8-7312c304c5eb",
+      "name": "테슷트",
+      "description": "입니다^^",
+      "coverImage": null,
+      "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "createdAt": "2024-11-28T13:28:32.051Z"
+    },
+    {
+      "channel_id": "0f167107-ea55-4dda-81e5-449f494cb959",
+      "name": "안녕하세용",
+      "description": null,
+      "coverImage": null,
+      "owner_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "createdAt": "2024-11-28T14:44:41.062Z"
+    }
+  ],
+  "workspaceMembers": [
+    {
+      "user_id": "e1f69d09-176c-4175-ad79-c128bd9d0b78",
+      "email": "compose@coffee.com",
+      "nickname": "쑥쑥이",
+      "profileImage": "/static/profiles/1733239075734.jpeg"
+    },
+    {
+      "user_id": "dbe0b50f-80f2-48f0-99e6-750fb214208b",
+      "email": "modynic12@gmail.com",
+      "nickname": "",
+      "profileImage": null
+    },
+    {
+      "user_id": "dac913b5-7082-4dac-885e-3e99cae8e722",
+      "email": "compose3@coffee.com",
+      "nickname": "씽씽이",
+      "profileImage": null
+    },
+    {
+      "user_id": "6ac3def1-3d6a-4f4d-9ba3-7cb7af303234",
+      "email": "compose4@coffee.com",
+      "nickname": "송송이",
+      "profileImage": "/static/profiles/1733389640397.png"
+    },
+    {
+      "user_id": "14dfc748-0980-4fbb-9c28-3b5db9d00f46",
+      "email": "compose1@coffee.com",
+      "nickname": "싹싹이",
+      "profileImage": "/static/profiles/1732264170479.png"
+    },
+    {
+      "user_id": "0edf1891-c605-4fbb-82cb-e50bca521137",
+      "email": "compose2@coffee.com",
+      "nickname": "씩씩이",
+      "profileImage": "/static/profiles/1733239443870.png"
+    }
+  ]
+}
