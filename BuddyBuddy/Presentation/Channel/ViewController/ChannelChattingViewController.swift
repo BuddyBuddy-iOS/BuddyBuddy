@@ -94,6 +94,21 @@ final class ChannelChattingViewController: BaseNavigationViewController {
         view.backgroundColor = .gray3
         return view
     }()
+    private let menuButton: UIButton = {
+        let view = UIButton()
+        
+        var config = UIButton.Configuration.plain()
+        var imgConfig = UIImage.SymbolConfiguration(pointSize: 16)
+        
+        config.preferredSymbolConfigurationForImage = imgConfig
+        config.image = UIImage(named: "menu")
+        config.baseForegroundColor = .black
+        
+        view.configuration = config
+        view.backgroundColor = .clear
+        
+        return view
+    }()
     
     init(vm: ChannelChattingViewModel) {
         self.vm = vm
@@ -102,6 +117,17 @@ final class ChannelChattingViewController: BaseNavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func setNavigation() {
+        let barButtonItem = UIBarButtonItem(customView: menuButton)
+        navigationItem.rightBarButtonItem = barButtonItem
     }
     
     override func setHierarchy() {
@@ -155,6 +181,7 @@ final class ChannelChattingViewController: BaseNavigationViewController {
             viewWillAppearTrigger: viewdidLoadTrigger,
             sendBtnTapped: sendButton.rx.tap.asObservable(),
             plusBtnTapped: plusButton.rx.tap.asObservable(),
+            menuBtnTapped: menuButton.rx.tap.asObservable(),
             chatBarText: chatTextView.rx.text.orEmpty.asObservable(),
             imagePicker: imagePicker.asObservable()
         )

@@ -25,10 +25,11 @@ final class DefaultDMUseCase: DMUseCaseInterface {
             playgroundID: playgroundID,
             roomID: roomID
         )
-        .flatMap { response -> Single<Result<[DMHistory], Error>> in
+        .flatMap { [weak self] response -> Single<Result<[DMHistory], Error>> in
+            guard let self else { return Single.just(.success([]))}
             switch response {
             case .success(let value):
-                return self.dmRepositoryInterface.convertArrayToDMHistory(
+                return dmRepositoryInterface.convertArrayToDMHistory(
                     roomID: roomID,
                     dmHistoryStringArray: value
                 )
@@ -39,6 +40,16 @@ final class DefaultDMUseCase: DMUseCaseInterface {
                 return Single.just(.failure(error))
             }
         }
+    }
+    
+    func fetchDMHistoryForList(
+        playgroundID: String,
+        roomID: String
+    ) -> Single<Result<[DMHistoryString], Error>> {
+        return dmRepositoryInterface.fetchDMHistoryString(
+            playgroundID: playgroundID,
+            roomID: roomID
+        )
     }
     
     func fetchDMUnRead(
@@ -63,10 +74,11 @@ final class DefaultDMUseCase: DMUseCaseInterface {
             message: message,
             files: files
         )
-        .flatMap { response -> Single<Result<[DMHistory], Error>> in
+        .flatMap { [weak self] response -> Single<Result<[DMHistory], Error>> in
+            guard let self else { return Single.just(.success([]))}
             switch response {
             case .success(let value):
-                return self.dmRepositoryInterface.convertObjectToDMHistory(
+                return dmRepositoryInterface.convertObjectToDMHistory(
                     roomID: roomID,
                     dmHistoryString: value
                 )

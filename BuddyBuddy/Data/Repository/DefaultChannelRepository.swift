@@ -234,7 +234,7 @@ final class DefaultChannelRepository: ChannelRepositoryInterface {
                 }
                 return fileDataArray
             }
-            .map { fileDataResult -> ChannelHistoryTable in
+            .map { [weak self] fileDataResult -> ChannelHistoryTable in
                 let list = List<Data>()
                 list.append(objectsIn: fileDataResult)
                 
@@ -252,7 +252,7 @@ final class DefaultChannelRepository: ChannelRepositoryInterface {
                         profileImage: channelHistoryString.user.profileImage ?? ""
                     )
                 )
-                self.realmRepository.updateItem(channelHistoryTable)
+                self?.realmRepository.updateItem(channelHistoryTable)
                 return channelHistoryTable
             }
         }
@@ -287,7 +287,7 @@ final class DefaultChannelRepository: ChannelRepositoryInterface {
             }
             return fileDataArray
         }
-        .map { fileDataResult -> ChannelHistory in
+        .map { [weak self] fileDataResult -> ChannelHistory in
             let list = List<Data>()
             list.append(objectsIn: fileDataResult)
             
@@ -305,7 +305,7 @@ final class DefaultChannelRepository: ChannelRepositoryInterface {
                     profileImage: channelHistoryString.user.profileImage ?? ""
                 )
             )
-            self.realmRepository.updateItem(channelHistoryTable)
+            self?.realmRepository.updateItem(channelHistoryTable)
             
             return channelHistoryTable.toDomain()
         }

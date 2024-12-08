@@ -35,6 +35,7 @@ final class ChannelChattingViewModel: ViewModelType {
         let viewWillAppearTrigger: Observable<Void>
         let sendBtnTapped: Observable<Void>
         let plusBtnTapped: Observable<Void>
+        let menuBtnTapped: Observable<Void>
         let chatBarText: Observable<String>
         let imagePicker: Observable<[UIImage]>
     }
@@ -53,10 +54,11 @@ final class ChannelChattingViewModel: ViewModelType {
         let removeChattingBarText = PublishSubject<Void>()
 
         input.viewWillAppearTrigger
-            .flatMap {
-                return self.channelUseCase.fetchChannelHistory(
+            .withUnretained(self)
+            .flatMap { (owner, _) in
+                owner.channelUseCase.fetchChannelHistory(
                     playgroundID: UserDefaultsManager.playgroundID,
-                    channelID: self.channelID
+                    channelID: owner.channelID
                 )
             }
             .bind(with: self) { owner, response in
@@ -67,7 +69,7 @@ final class ChannelChattingViewModel: ViewModelType {
                     updateChannelChatTableView.onNext([ChatSection(items: chatHistory)])
                     scrollToDown.onNext(())
                     
-                    owner.channelUseCase.connectSocket(channelID: self.channelID)
+                    owner.channelUseCase.connectSocket(channelID: owner.channelID)
                 case .failure(let error):
                     print(error)
                 }
@@ -93,12 +95,14 @@ final class ChannelChattingViewModel: ViewModelType {
                 input.chatBarText,
                 input.imagePicker
             ))
-            .flatMap { (text, images) -> Single<Result<[ChannelHistory], Error>> in
-                return self.channelUseCase.sendChannel(
+            .withUnretained(self)
+            .flatMap { (owner, inputs) -> Single<Result<[ChannelHistory], Error>> in
+                let (text, images) = inputs
+                return owner.channelUseCase.sendChannel(
                     playgroundID: UserDefaultsManager.playgroundID,
-                    channelID: self.channelID,
+                    channelID: owner.channelID,
                     message: text,
-                    files: self.imageToData(imageArray: images)
+                    files: owner.imageToData(imageArray: images)
                 )
             }
             .bind(with: self) { _, result in
@@ -114,6 +118,12 @@ final class ChannelChattingViewModel: ViewModelType {
                 case .failure(let error):
                     print(error)
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        input.menuBtnTapped
+            .bind(with: self) { owner, _ in
+                owner.coordinator.toChannelSetting(channelID: owner.channelID)
             }
             .disposed(by: disposeBag)
             

@@ -17,6 +17,11 @@ protocol DMUseCaseInterface {
         roomID: String
     ) -> Single<Result<[DMHistory], Error>>
     
+    func fetchDMHistoryForList(
+        playgroundID: String,
+        roomID: String
+    ) -> Single<Result<[DMHistoryString], Error>>
+    
     func fetchDMUnRead(
         playgroundID: String,
         roomID: String

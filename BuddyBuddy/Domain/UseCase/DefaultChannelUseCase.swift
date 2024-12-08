@@ -118,10 +118,11 @@ final class DefaultChannelUseCase: ChannelUseCaseInterface {
             playgroundID: playgroundID,
             channelID: channelID
         )
-        .flatMap { response -> Single<Result<[ChannelHistory], Error>> in
+        .flatMap { [weak self] response -> Single<Result<[ChannelHistory], Error>> in
+            guard let self else { return Single.just(.success([])) }
             switch response {
             case .success(let value):
-                return self.repository.convertArrayToChannelHistory(
+                return repository.convertArrayToChannelHistory(
                     channelID: channelID,
                     channelHistoryStringArray: value)
                 .flatMap { _ in
@@ -145,10 +146,11 @@ final class DefaultChannelUseCase: ChannelUseCaseInterface {
             message: message,
             files: files
         )
-        .flatMap { response -> Single<Result<[ChannelHistory], Error>> in
+        .flatMap { [weak self] response -> Single<Result<[ChannelHistory], Error>> in
+            guard let self else { return Single.just(.success([])) }
             switch response {
             case .success(let value):
-                return self.repository.convertObjectToChannelHistory(
+                return repository.convertObjectToChannelHistory(
                     channelID: channelID,
                     channelHistoryString: value
                 )

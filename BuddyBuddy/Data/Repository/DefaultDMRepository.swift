@@ -131,7 +131,7 @@ final class DefaultDMRepository: DMRepositoryInterface {
                 }
                 return fileDataArray
             }
-            .map { fileDataResult -> DMHistoryTable in
+            .map { [weak self] fileDataResult -> DMHistoryTable in
                 let list = List<Data>()
                 list.append(objectsIn: fileDataResult)
                 
@@ -148,7 +148,7 @@ final class DefaultDMRepository: DMRepositoryInterface {
                         profileImage: dmHistoryString.user.profileImage ?? ""
                     )
                 )
-                self.realmRepository.updateItem(dmHistoryTable)
+                self?.realmRepository.updateItem(dmHistoryTable)
                 return dmHistoryTable
             }
         }
@@ -183,7 +183,7 @@ final class DefaultDMRepository: DMRepositoryInterface {
             }
             return fileDataArray
         }
-        .map { fileDataResult -> DMHistory in
+        .map { [weak self] fileDataResult -> DMHistory in
             let list = List<Data>()
             list.append(objectsIn: fileDataResult)
             
@@ -200,7 +200,7 @@ final class DefaultDMRepository: DMRepositoryInterface {
                     profileImage: dmHistoryString.user.profileImage ?? ""
                 )
             )
-            self.realmRepository.updateItem(dmHistoryTable)
+            self?.realmRepository.updateItem(dmHistoryTable)
             
             return dmHistoryTable.toDomain()
         }

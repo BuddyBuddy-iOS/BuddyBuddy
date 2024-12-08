@@ -63,15 +63,15 @@ final class DMChattingViewModel: ViewModelType {
                 case .fromList(let dmListInfo):
                     owner.roomID = dmListInfo.roomID
                     owner.userName = dmListInfo.userName
-                    return self.dmUseCase.fetchDMHistory(
+                    return owner.dmUseCase.fetchDMHistory(
                         playgroundID: UserDefaultsManager.playgroundID,
                         roomID: dmListInfo.roomID
                     )
                 case .fromProfile(let userID):
-                    let dmListInfo = self.dmUseCase.findRoomIDFromUser(userID: userID)
+                    let dmListInfo = owner.dmUseCase.findRoomIDFromUser(userID: userID)
                     owner.roomID = dmListInfo.0
                     owner.userName = dmListInfo.1
-                    return self.dmUseCase.fetchDMHistory(
+                    return owner.dmUseCase.fetchDMHistory(
                         playgroundID: UserDefaultsManager.playgroundID,
                         roomID: dmListInfo.0
                     )
@@ -112,12 +112,14 @@ final class DMChattingViewModel: ViewModelType {
                 input.chatBarText,
                 input.imagePicker
             ))
-            .flatMap { (text, images) -> Single<Result<[DMHistory], Error>> in
-                return self.dmUseCase.sendDM(
+            .withUnretained(self)
+            .flatMap { owner, inputs -> Single<Result<[DMHistory], Error>> in
+                let (text, images) = inputs
+                return owner.dmUseCase.sendDM(
                     playgroundID: UserDefaultsManager.playgroundID,
-                    roomID: self.roomID ?? "",
+                    roomID: owner.roomID ?? "",
                     message: text,
-                    files: self.imageToData(imageArray: images)
+                    files: owner.imageToData(imageArray: images)
                 )
             }
             .bind(with: self) { _, result in
