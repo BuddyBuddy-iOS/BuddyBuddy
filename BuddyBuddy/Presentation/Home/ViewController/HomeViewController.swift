@@ -17,17 +17,11 @@ final class HomeViewController: BaseNavigationViewController {
     @Dependency(NetworkProtocol.self) private var service: NetworkProtocol
     private let vm: HomeViewModel
     
-    private let scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.showsVerticalScrollIndicator = false
-        return view
-    }()
-    private let stackView: UIStackView = {
-        let view = UIStackView()
-        view.axis = .vertical
-        view.spacing = 2
-        view.distribution = .fill
-        view.backgroundColor = .gray2
+    private let navigationView: UIView = UIView()
+    private let titleLabel: UILabel = {
+        let view = UILabel()
+        view.font = .title1
+        view.textColor = .black
         return view
     }()
     private let menuBtn: UIButton = {
@@ -43,6 +37,19 @@ final class HomeViewController: BaseNavigationViewController {
         )
         
         view.configuration = config
+        return view
+    }()
+    private let scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.showsVerticalScrollIndicator = false
+        return view
+    }()
+    private let stackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 2
+        view.distribution = .fill
+        view.backgroundColor = .gray2
         return view
     }()
     private let channelTableView: UITableView = {
@@ -109,6 +116,7 @@ final class HomeViewController: BaseNavigationViewController {
     
     init(vm: HomeViewModel) {
         self.vm = vm
+        super.init()
     }
     
     override func bind() {
@@ -124,7 +132,7 @@ final class HomeViewController: BaseNavigationViewController {
         
         output.navigationTitle
             .drive(with: self) { owner, title in
-                owner.title = title
+                owner.titleLabel.text = title
             }
             .disposed(by: disposeBag)
         
@@ -146,27 +154,17 @@ final class HomeViewController: BaseNavigationViewController {
     
     override func setNavigation() {
         super.setNavigation()
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.titlePositionAdjustment = UIOffset(
-            horizontal: -(view.frame.width/2),
-            vertical: 2
-        )
-        let font = UIFont.title1 ?? UIFont.boldSystemFont(ofSize: 22)
-        appearance.titleTextAttributes =
-        [NSAttributedString.Key.font: font]
-        
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.standardAppearance = appearance
-        
-        let barItem = UIBarButtonItem(customView: menuBtn)
-        
-        navigationItem.leftBarButtonItem = barItem
+
+        navigationController?.isNavigationBarHidden = true
     }
     
     override func setHierarchy() {
-        [scrollView, floatingBtn, toastMsgLabel].forEach {
+        [navigationView, scrollView, floatingBtn, toastMsgLabel].forEach {
             view.addSubview($0)
+        }
+        
+        [menuBtn, titleLabel].forEach {
+            navigationView.addSubview($0)
         }
         
         scrollView.addSubview(stackView)
@@ -177,8 +175,22 @@ final class HomeViewController: BaseNavigationViewController {
     }
     
     override func setConstraints() {
+        navigationView.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(safeArea)
+            make.height.equalTo(44)
+        }
+        menuBtn.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(14)
+            make.centerY.equalToSuperview()
+            make.size.equalTo(36)
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(menuBtn.snp.trailing).offset(6)
+        }
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(navigationView.snp.bottom)
+            make.bottom.horizontalEdges.equalToSuperview()
         }
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

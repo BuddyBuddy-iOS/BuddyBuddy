@@ -61,14 +61,14 @@ final class PlaygroundViewController: BaseViewController {
             .drive(playgroundTableView.rx.items(
                 cellIdentifier: PlaygroundTableViewCell.identifier,
                 cellType: PlaygroundTableViewCell.self
-            )) { _, value, cell in
+            )) { [weak self] _, value, cell in
+                guard let self else { return }
                 cell.configureCell(value)
-                cell.moreButton.accessibilityIdentifier = value.workspaceID
-                cell.moreButton.addTarget(
-                    self,
-                    action: #selector(self.moreBtnDidTap),
-                    for: .touchUpInside
-                )
+                cell.moreButton.rx.tap
+                    .bind { _ in
+                        self.moreBtnTapped.accept(value.workspaceID)
+                    }
+                    .disposed(by: disposeBag)
             }
             .disposed(by: disposeBag)
         
@@ -107,10 +107,5 @@ final class PlaygroundViewController: BaseViewController {
             make.bottom.equalTo(safeArea)
             make.height.equalTo(82)
         }
-    }
-    
-    @objc func moreBtnDidTap(_ sender: UIButton) {
-        guard let id = sender.accessibilityIdentifier else { return }
-        moreBtnTapped.accept(id)
     }
 }

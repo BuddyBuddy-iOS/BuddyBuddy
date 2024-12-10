@@ -16,6 +16,13 @@ final class SearchViewController: BaseNavigationViewController {
     
     private let vm: SearchViewModel
     
+    private let navigationTitleLabel: UILabel = {
+        let view = UILabel()
+        view.font = .naviTitle
+        view.textColor = .black
+        view.text = "Search"
+        return view
+    }()
     private let searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchBar.placeholder = "Search".localized()
@@ -127,10 +134,9 @@ final class SearchViewController: BaseNavigationViewController {
     
     override func setNavigation() {
         super.setNavigation()
-        title = "Search"
-        
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.titleView = navigationTitleLabel
     }
     
     override func setHierarchy() {
