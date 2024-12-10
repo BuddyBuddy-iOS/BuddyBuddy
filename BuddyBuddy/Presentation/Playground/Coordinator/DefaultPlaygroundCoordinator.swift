@@ -20,6 +20,20 @@ final class DefaultPlaygroundCoordinator: PlaygroundCoordinator {
         coordinator: self,
         useCase: playgroundUseCase
     )
+    private let slideType: SlideType = .leading
+    private lazy var presentation = {
+        let controller = SlidePresentationController(
+            presentedViewController: vc,
+            presenting: nil,
+            type: slideType
+        )
+        controller.sideMenuDelegate = vc
+        return controller
+    }()
+    private lazy var manager = SlideInPresentationManager(
+        presentationController: presentation,
+        type: slideType
+    )
     
     init(
         navigationController: UINavigationController,
@@ -30,13 +44,6 @@ final class DefaultPlaygroundCoordinator: PlaygroundCoordinator {
     
     func start() {
         vm.delegate = delegate
-        
-        let presentation = SlidePresentationController(
-            presentedViewController: vc,
-            presenting: nil
-        )
-        
-        let manager = SlideInPresentationManager(presentationController: presentation)
         
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = manager

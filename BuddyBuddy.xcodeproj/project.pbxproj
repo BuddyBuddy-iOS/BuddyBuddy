@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C00F90C02CE75EC800B7DD62 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00F90BF2CE75EC800B7DD62 /* NetworkLogger.swift */; };
+		C0290A7B2D082BA3003B8A5D /* SlideType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0290A7A2D082BA3003B8A5D /* SlideType.swift */; };
+		C0290A7D2D083F1B003B8A5D /* SideMenuHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0290A7C2D083F1B003B8A5D /* SideMenuHandler.swift */; };
 		C02D93BB2CFB47FA003471B9 /* PlaygroundBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D93BA2CFB47FA003471B9 /* PlaygroundBottomView.swift */; };
 		C02D93BD2CFB4DDD003471B9 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D93BC2CFB4DDD003471B9 /* PlaygroundViewController.swift */; };
 		C02D93BF2CFC4EBA003471B9 /* LeftAlignButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D93BE2CFC4EBA003471B9 /* LeftAlignButton.swift */; };
@@ -253,6 +255,8 @@
 
 /* Begin PBXFileReference section */
 		C00F90BF2CE75EC800B7DD62 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		C0290A7A2D082BA3003B8A5D /* SlideType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideType.swift; sourceTree = "<group>"; };
+		C0290A7C2D083F1B003B8A5D /* SideMenuHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHandler.swift; sourceTree = "<group>"; };
 		C02D93BA2CFB47FA003471B9 /* PlaygroundBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundBottomView.swift; sourceTree = "<group>"; };
 		C02D93BC2CFB4DDD003471B9 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
 		C02D93BE2CFC4EBA003471B9 /* LeftAlignButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeftAlignButton.swift; path = BuddyBuddy/Presentation/DM/LeftAlignButton.swift; sourceTree = SOURCE_ROOT; };
@@ -1134,6 +1138,7 @@
 				DC9375702CEDC0B900012F43 /* SocketProtocol.swift */,
 				DC9BC0E42CEA0CAB002AF523 /* KeyChainProtocol.swift */,
 				C0A35E0A2CF8A3C600B41E60 /* ModalDelegate.swift */,
+				C0290A7C2D083F1B003B8A5D /* SideMenuHandler.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1282,6 +1287,7 @@
 				C90FEE752CF5D065008819AF /* AlertLiteral.swift */,
 				C02D93C92CFC715F003471B9 /* ActionSheetType.swift */,
 				C97DE2B92CFCAF43000B4E94 /* LoginType.swift */,
+				C0290A7A2D082BA3003B8A5D /* SlideType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1714,6 +1720,7 @@
 				C957EA712CE21FD800B62A2A /* SearchItemTableViewCell.swift in Sources */,
 				C02D93C42CFC5F92003471B9 /* PlaygroundList.swift in Sources */,
 				C043982A2D0091A800CCC4A1 /* PlaygroundInfoDTO.swift in Sources */,
+				C0290A7D2D083F1B003B8A5D /* SideMenuHandler.swift in Sources */,
 				C96C729B2CDB289400E0D6CF /* BaseCollectionViewCell.swift in Sources */,
 				DC9375622CEC73B800012F43 /* RealmRepository.swift in Sources */,
 				C91BBC252CE4D25C001EFC70 /* ChangeAdminViewModel.swift in Sources */,
@@ -1777,6 +1784,7 @@
 				C91F672C2CEE425200C84265 /* DefaultUserRepository.swift in Sources */,
 				C9E44A9D2CECC1070044CD5C /* DefaultPlaygroundUseCase.swift in Sources */,
 				DCB9ABB82CFE0645006845CF /* ChannelChattingViewController.swift in Sources */,
+				C0290A7B2D082BA3003B8A5D /* SlideType.swift in Sources */,
 				C96C72992CDAF9EA00E0D6CF /* BaseNavigationViewController.swift in Sources */,
 				C91F67442CF098C900C84265 /* Data+.swift in Sources */,
 				C9F20F542CDB64C10043351E /* AuthViewModel.swift in Sources */,

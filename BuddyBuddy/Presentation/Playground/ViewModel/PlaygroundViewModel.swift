@@ -31,6 +31,7 @@ final class PlaygroundViewModel: ViewModelType {
         let selectedPlayground: Observable<Workspace>
         let moreBtnTapped: Observable<String>
         let addBtnTapped: Observable<Void>
+        let dismiss: Observable<Void>
     }
     
     struct Output {
@@ -95,6 +96,12 @@ final class PlaygroundViewModel: ViewModelType {
         input.addBtnTapped
             .bind(with: self) { owner, _ in
                 // TODO: 생성 화면 전환
+            }
+            .disposed(by: disposeBag)
+        
+        input.dismiss
+            .bind(with: self) { owner, _ in
+                owner.coordinator.dismissVC()
             }
             .disposed(by: disposeBag)
         

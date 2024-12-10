@@ -7,27 +7,39 @@
 
 import UIKit
 
+import SnapKit
+
 final class SlidePresentationController: UIPresentationController {
-    private let dimmingView = UIView()
+    let dimmingView = UIView()
+    private let type: SlideType
+    weak var sideMenuDelegate: SideMenuHandler?
     
     override var frameOfPresentedViewInContainerView: CGRect {
         guard var frame = containerView?.frame else {
             return .zero
         }
         
-        frame.origin = CGPoint(x: 0, y: 0)
-        frame.size.width = frame.size.width
+        let originWidth = frame.width
+        
+        frame.size.width *= 0.8
         frame.size.height = frame.size.height
+        
+        frame.origin = CGPoint(
+            x: type == .leading ? 0 : originWidth - frame.size.width,
+            y: 0
+        )
         
         return frame
     }
     
     var transitionCoordinator: UIViewControllerTransitionCoordinator?
     
-    override init(
+    init(
         presentedViewController: UIViewController,
-        presenting presentingViewController: UIViewController?
+        presenting presentingViewController: UIViewController?,
+        type: SlideType
     ) {
+        self.type = type
         super.init(
             presentedViewController: presentedViewController,
             presenting: presentingViewController
@@ -46,29 +58,23 @@ final class SlidePresentationController: UIPresentationController {
             return
         }
         
-        coordinator.animate(alongsideTransition: { _ in
-            self.dimmingView.alpha = 0.5
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            guard let self else { return }
+            dimmingView.alpha = 0.5
         })
-    }
-    
-    func setupDimmingViewLayout() {
-        dimmingView.alpha = 0.0
-        
-        containerView?.insertSubview(dimmingView, at: 0)
-        
-        dimmingView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
     }
     
     override func dismissalTransitionWillBegin() {
         if let coordinator = presentedViewController.transitionCoordinator {
-            coordinator.animate(alongsideTransition: { [weak self] _ in
-                guard let self else { return }
-                dimmingView.alpha = 0.0
-                presentingViewController.view.transform = CGAffineTransform.identity
-                containerView?.layoutIfNeeded()
-            }, completion: nil)
+            coordinator.animate(
+                alongsideTransition: { [weak self] _ in
+                    guard let self else { return }
+                    dimmingView.alpha = 0.0
+                    presentingViewController.view.transform = CGAffineTransform.identity
+                    containerView?.layoutIfNeeded()
+                }, 
+                completion: nil
+            )
         }
     }
     
@@ -77,5 +83,28 @@ final class SlidePresentationController: UIPresentationController {
         if completed {
             dimmingView.removeFromSuperview()
         }
+    }
+}
+
+extension SlidePresentationController {
+    func setupDimmingViewLayout() {
+        dimmingView.alpha = 0.0
+        dimmingView.backgroundColor = .black
+        
+        containerView?.insertSubview(dimmingView, at: 0)
+        
+        dimmingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(handleTap)
+        )
+        dimmingView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTap() {
+        sideMenuDelegate?.dismissNotification()
     }
 }
