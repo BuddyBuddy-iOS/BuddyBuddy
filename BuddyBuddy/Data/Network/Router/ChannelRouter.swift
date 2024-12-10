@@ -11,6 +11,7 @@ import Alamofire
 
 enum ChannelRouter {
     case myChannelList(playgroundID: String)
+    case channelMember(playgroundID: String, channelID: String)
     case unreadCount(playgroundID: String, channelID: String, after: String?)
     case createChannel(request: AddChannelReqeustDTO)
     case fetchChannelChat(query: ChannelChatQuery)
@@ -31,7 +32,7 @@ extension ChannelRouter: TargetType {
     var method: HTTPMethod {
         switch self {
         case .myChannelList, .unreadCount, .fetchChannelChat, .specificChannel, 
-                .exitChannel, .channelHistory, .channelImage:
+                .exitChannel, .channelHistory, .channelImage, .channelMember:
             return .get
         case .changeChannelAdmin:
             return .put
@@ -46,6 +47,8 @@ extension ChannelRouter: TargetType {
         switch self {
         case .myChannelList(let playgroundID):
             return "/workspaces/\(playgroundID)/my-channels"
+        case .channelMember(let playgroundID, let channelID):
+            return "/workspaces/\(playgroundID)/channels/\(channelID)/members"
         case .unreadCount(let playgroundID, let channelID, _):
             return "/workspaces/\(playgroundID)/channels/\(channelID)/unreads"
         case .createChannel:
@@ -71,8 +74,8 @@ extension ChannelRouter: TargetType {
     
     var header: [String: String] {
         switch self {
-        case .myChannelList, .unreadCount, .fetchChannelChat,
-                .specificChannel, .exitChannel, .deleteChannel, .channelHistory:
+        case .myChannelList, .unreadCount, .fetchChannelChat, .specificChannel,
+                .exitChannel, .deleteChannel, .channelHistory, .channelMember:
             return [
                 Header.authorization.rawValue: KeyChainManager.shared.getAccessToken() ?? "",
                 Header.Key.rawValue: APIKey.Key
@@ -106,7 +109,8 @@ extension ChannelRouter: TargetType {
         switch self {
         case .myChannelList, .specificChannel, .createChannel,
                 .changeChannelAdmin, .deleteChannel, .exitChannel, 
-                .channelHistory, .sendChannelChat, .channelImage:
+                .channelHistory, .sendChannelChat, .channelImage,
+                .channelMember:
             return nil
         case .unreadCount(_, _, let after):
             guard let after else { return nil }

@@ -70,7 +70,17 @@ final class DMListTableViewCell: BaseTableViewCell {
         profileImage.updateURL(url: transition.profileImg)
         userName.text = transition.userName
         lastText.text = transition.lastText
-        lastTime.text = "PM 06:12"
-        unreadCount.updateCount(transition.unReadCount)
+        
+        let defaultDate = transition.lastTime.toDate(format: .defaultDate)
+        lastTime.text = defaultDate?.isToday() ?? true ? 
+        defaultDate?.toString(format: .HourMinute) : defaultDate?.toString(format: .yearMonthDay)
+        
+        print(transition.unReadCount, "🤪")
+        if transition.unReadCount > 0 {
+            unreadCount.isHidden = false
+            unreadCount.updateCount(transition.unReadCount)
+        } else {
+            unreadCount.isHidden = true
+        }
     }
 }

@@ -149,7 +149,9 @@ final class DMTextImageTableViewCell: BaseTableViewCell {
     
     func designCell(_ transition: DMHistory) {
         userName.text = transition.user.nickname
-        chatTime.text = "11:55 오전"
+        chatTime.text = transition.createdAt
+            .toDate(format: .defaultDate)?
+            .toString(format: .HourMinute)
         
         speechBubble.updateText(transition.content)
         profileImage.updateURL(url: transition.user.profileImage ?? "")
@@ -224,8 +226,8 @@ final class DMTextImageTableViewCell: BaseTableViewCell {
                     imageView.image = image
                 }
             }
-        default: break
-            
+        default: 
+            break
         }
     }
 }

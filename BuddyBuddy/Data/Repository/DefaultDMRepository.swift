@@ -62,6 +62,31 @@ final class DefaultDMRepository: DMRepositoryInterface {
         }
     }
     
+    func fetchDMHistory(
+        playgroundID: String,
+        roomID: String
+    ) -> RxSwift.Single<Result<[DMHistory], Error>> {
+        let chatHistory = realmRepository.readAllItem().filter {
+            $0.roomID == roomID
+        }.sorted { $0.createdAt < $1.createdAt }
+        return networkService.callRequest(
+            router: DMRouter.dmHistory(
+                playgroundID: playgroundID,
+                roomID: roomID,
+                cursorDate: chatHistory.last?.createdAt ?? ""
+            ),
+            responseType: [DMHistoryDTO].self
+        )
+        .map { result in
+            switch result {
+            case .success(let dto):
+                return .success(dto.map { $0.toDomain() })
+            case .failure(let error):
+                return .failure(error)
+            }
+        }
+    }
+    
     func fetchDMUnread(
         playgroundID: String,
         roomID: String

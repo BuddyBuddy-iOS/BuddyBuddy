@@ -36,4 +36,15 @@ extension DMHistoryDTO {
             user: user.toDomain()
         )
     }
+    
+    func toDomain() -> DMHistory {
+        return DMHistory(
+            dmID: dmID,
+            roomID: roomID,
+            content: content ?? "",
+            createdAt: createdAt,
+            files: [],
+            user: user.toDomain()
+        )
+    }
 }

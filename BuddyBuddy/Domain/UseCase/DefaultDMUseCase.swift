@@ -45,11 +45,23 @@ final class DefaultDMUseCase: DMUseCaseInterface {
     func fetchDMHistoryForList(
         playgroundID: String,
         roomID: String
-    ) -> Single<Result<[DMHistoryString], Error>> {
-        return dmRepositoryInterface.fetchDMHistoryString(
+    ) -> Single<Result<[DMHistory], Error>> {
+        return dmRepositoryInterface.fetchDMHistory(
             playgroundID: playgroundID,
             roomID: roomID
         )
+        .flatMap { response in
+            switch response {
+            case .success(let dmHistory):
+                if dmHistory.isEmpty {
+                    return self.dmRepositoryInterface.fetchDMHistoryTable(roomID: roomID)
+                } else {
+                    return Single.just(.success(dmHistory))
+                }
+            case .failure(let error):
+                return Single.just(Result.failure(error))
+            }
+        }
     }
     
     func fetchDMUnRead(

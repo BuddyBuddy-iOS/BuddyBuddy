@@ -45,6 +45,8 @@ final class DMListViewController: BaseNavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let repo = RealmRepository<DMHistoryTable>()
+        print(repo.detectRealmURL())
     }
     
     override func setHierarchy() {

@@ -128,7 +128,9 @@ final class HomeViewModel: ViewModelType {
                     let isFold = updateChannelState.value[2].items.isEmpty
                     isChannelFold.accept(!isFold)
                 case 1:
-                    owner.coordinator.toChannelDM(channelID: owner.channelList.value[indexPath.row].channelID)
+                    owner.coordinator.toChannelDM(
+                        channelID: owner.channelList.value[indexPath.row].channelID
+                    )
                 case 2:
                     owner.coordinator.toAddChannel()
                 default:

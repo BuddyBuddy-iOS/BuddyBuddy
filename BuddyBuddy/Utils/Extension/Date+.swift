@@ -13,4 +13,9 @@ extension Date {
         BuddyDateFormatter.standard.dateFormat = format.value
         return BuddyDateFormatter.standard.string(from: self)
     }
+    
+    func isToday() -> Bool {
+        let calendar = Calendar.current
+        return calendar.isDateInToday(self)
+    }
 }

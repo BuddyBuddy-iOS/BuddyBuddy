@@ -46,13 +46,30 @@ final class ChannelChattingViewModel: ViewModelType {
         let removeChattingBarTextAndImage: Driver<Void>
         let plusBtnTapped: Driver<Void>
         let imagePicker: Driver<[UIImage]>
+        let channelForNavi: Driver<String>
     }
     
     func transform(input: Input) -> Output {
         let updateChannelChatTableView = PublishSubject<[ChatSection<ChannelHistory>]>()
         let scrollToDown = PublishSubject<Void>()
         let removeChattingBarText = PublishSubject<Void>()
+        let channelForNavi = PublishSubject<String>()
 
+        input.viewWillAppearTrigger
+            .withUnretained(self)
+            .flatMap { (owner, _) in
+                owner.channelUseCase.fetchSpecificChannel(channelID: owner.channelID)
+            }
+            .bind(with: self) { _, response in
+                switch response {
+                case .success(let value):
+                    channelForNavi.onNext("#\(value.channelName) \(value.channelMembers.count)")
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         input.viewWillAppearTrigger
             .withUnretained(self)
             .flatMap { (owner, _) in
@@ -132,7 +149,8 @@ final class ChannelChattingViewModel: ViewModelType {
             scrollToDown: scrollToDown.asDriver(onErrorJustReturn: ()),
             removeChattingBarTextAndImage: removeChattingBarText.asDriver(onErrorJustReturn: ()),
             plusBtnTapped: input.plusBtnTapped.asDriver(onErrorJustReturn: ()),
-            imagePicker: input.imagePicker.asDriver(onErrorJustReturn: [])
+            imagePicker: input.imagePicker.asDriver(onErrorJustReturn: []),
+            channelForNavi: channelForNavi.asDriver(onErrorJustReturn: "")
         )
     }
 }

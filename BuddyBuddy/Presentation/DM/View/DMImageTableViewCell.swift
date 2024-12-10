@@ -134,7 +134,9 @@ final class DMImageTableViewCell: BaseTableViewCell {
     
     func designCell(_ transition: DMHistory) {
         userName.text = transition.user.nickname
-        chatTime.text = "11:55 오전"
+        chatTime.text = transition.createdAt
+            .toDate(format: .defaultDate)?
+            .toString(format: .HourMinute)
         
         profileImage.updateURL(url: transition.user.profileImage ?? "")
         imageType(dataArray: transition.files)

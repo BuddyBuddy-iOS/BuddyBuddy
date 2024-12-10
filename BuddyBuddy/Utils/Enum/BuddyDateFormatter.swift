@@ -12,6 +12,8 @@ enum BuddyDateFormatter {
     
     case defaultDate
     case simpleDate
+    case yearMonthDay
+    case HourMinute
     
     var value: String {
         switch self {
@@ -19,6 +21,10 @@ enum BuddyDateFormatter {
             return "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         case .simpleDate:
             return "SimpleDate".localized()
+        case .yearMonthDay:
+            return "yyyy년 MM월 dd일"
+        case .HourMinute:
+            return "a HH:mm"
         }
     }
 }

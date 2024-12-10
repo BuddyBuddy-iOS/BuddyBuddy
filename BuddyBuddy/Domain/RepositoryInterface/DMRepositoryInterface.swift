@@ -17,6 +17,11 @@ protocol DMRepositoryInterface {
         roomID: String
     ) -> Single<Result<[DMHistoryString], Error>>
     
+    func fetchDMHistory(
+        playgroundID: String,
+        roomID: String
+    ) -> RxSwift.Single<Result<[DMHistory], Error>>
+    
     func fetchDMUnread(
         playgroundID: String,
         roomID: String

@@ -126,6 +126,7 @@ final class ChannelChattingViewController: BaseNavigationViewController {
     }
     
     override func setNavigation() {
+        super.setNavigation()
         let barButtonItem = UIBarButtonItem(customView: menuButton)
         navigationItem.rightBarButtonItem = barButtonItem
     }
@@ -186,6 +187,12 @@ final class ChannelChattingViewController: BaseNavigationViewController {
             imagePicker: imagePicker.asObservable()
         )
         let output = vm.transform(input: input)
+        
+        output.channelForNavi
+            .drive(with: self) { owner, value in
+                owner.navigationItem.title = value
+            }
+            .disposed(by: disposeBag)
         
         output.updateChannelChatTableView
             .drive(ChannelChattingTableView.rx.items(dataSource: datasource))
@@ -388,4 +395,3 @@ extension ChannelChattingViewController {
         }
     }
 }
-
