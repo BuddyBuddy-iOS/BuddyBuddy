@@ -13,6 +13,7 @@ import RxSwift
 final class ChannelSettingViewModel: ViewModelType {
     private let disposeBag: DisposeBag = DisposeBag()
     
+    weak var delegate: ModalDelegate?
     private let coordinator: HomeCoordinator
     private let useCase: ChannelUseCaseInterface
     private let channelID: String
@@ -93,7 +94,7 @@ final class ChannelSettingViewModel: ViewModelType {
         
         input.blindViewTapped
             .bind(with: self) { owner, _ in
-                owner.coordinator.popVC()
+                owner.coordinator.dismissVC()
             }
             .disposed(by: disposeBag)
         
@@ -117,7 +118,7 @@ final class ChannelSettingViewModel: ViewModelType {
                 switch result {
                 case .success(_):
                     showAlert.accept(false)
-                    owner.coordinator.popVC()
+                    owner.coordinator.dismissVC()
                 case .failure(let error):
                     print(error)
                 }
