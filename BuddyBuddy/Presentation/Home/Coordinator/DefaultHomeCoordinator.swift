@@ -25,6 +25,7 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     private var channelSettingVM: ChannelSettingViewModel?
     private var presentation: SlidePresentationController?
     private var manager: SlideInPresentationManager?
+    private var naviForChannelAmdin = UINavigationController()
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -79,15 +80,18 @@ final class DefaultHomeCoordinator: HomeCoordinator {
             useCase: DefaultChannelUseCase(),
             channelID: channelID
         ))
+        naviForChannelAmdin.setViewControllers([vc], animated: true)
         vc.modalPresentationStyle = .pageSheet
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.large()]
             sheet.prefersGrabberVisible = true
         }
-        navigationController.present(
-            vc,
-            animated: true
-        )
+        if let presentedVC = navigationController.presentedViewController {
+            presentedVC.present(
+                naviForChannelAmdin,
+                animated: true
+            )
+        }
     }
     
     func toInviteMember() {

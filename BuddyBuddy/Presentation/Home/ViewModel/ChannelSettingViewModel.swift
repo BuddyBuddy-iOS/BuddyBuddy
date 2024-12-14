@@ -13,7 +13,6 @@ import RxSwift
 final class ChannelSettingViewModel: ViewModelType {
     private let disposeBag: DisposeBag = DisposeBag()
     
-    weak var delegate: ModalDelegate?
     private let coordinator: HomeCoordinator
     private let useCase: ChannelUseCaseInterface
     private let channelID: String
