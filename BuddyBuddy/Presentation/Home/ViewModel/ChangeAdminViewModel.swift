@@ -27,9 +27,6 @@ final class ChangeAdminViewModel: ViewModelType {
         self.channelID = channelID
     }
     
-    /*
-     Cell Tap - 관리자 변경 trigger -> output alert 표출 -> 화면 dismiss
-     */
     struct Input {
         let backBtnTapped: Observable<Void>
         let viewWillAppear: Observable<Void>
@@ -99,7 +96,7 @@ final class ChangeAdminViewModel: ViewModelType {
                 switch result {
                 case .success(let value):
                     showAlert.onNext(!value)
-                    owner.coordinator.dismissVC()
+                    owner.coordinator.dismissModal()
                 case .failure(let error):
                     print(error)
                 }
@@ -108,7 +105,7 @@ final class ChangeAdminViewModel: ViewModelType {
         
         input.backBtnTapped
             .bind(with: self) { owner, _ in
-                owner.coordinator.dismissVC()
+                owner.coordinator.dismissModal()
             }
             .disposed(by: disposeBag)
         

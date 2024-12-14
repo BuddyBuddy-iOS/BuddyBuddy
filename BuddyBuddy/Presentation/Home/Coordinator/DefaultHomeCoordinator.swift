@@ -80,9 +80,13 @@ final class DefaultHomeCoordinator: HomeCoordinator {
             useCase: DefaultChannelUseCase(),
             channelID: channelID
         ))
-        naviForChannelAmdin.setViewControllers([vc], animated: true)
-        vc.modalPresentationStyle = .pageSheet
-        if let sheet = vc.sheetPresentationController {
+        naviForChannelAmdin.navigationBar.isHidden = true
+        naviForChannelAmdin.setViewControllers(
+            [vc],
+            animated: true
+        )
+        naviForChannelAmdin.modalPresentationStyle = .pageSheet
+        if let sheet = naviForChannelAmdin.sheetPresentationController {
             sheet.detents = [.large()]
             sheet.prefersGrabberVisible = true
         }
@@ -168,4 +172,9 @@ final class DefaultHomeCoordinator: HomeCoordinator {
         coordinator.start()
     }
     
+    func dismissModal() {
+        if let presentedVC = navigationController.presentedViewController {
+            presentedVC.dismiss(animated: true)
+        }
+    }
 }
