@@ -9,6 +9,7 @@ import Foundation
 
 final class DIContainer {
     static var storage: [String: Any] = [:]
+    static var cache: [String: Any] = [:]
     
     private init() { }
     
@@ -17,9 +18,18 @@ final class DIContainer {
     }
     
     static func resolve<T>(type: T.Type) -> T {
-        guard let object = storage["\(type)"] as? T else {
-            fatalError("register 되지 않은 객체 호출: \(type)")
+        let key = "\(type)"
+        
+        if let cachedObject = cache[key] as? T {
+            return cachedObject
         }
+        
+        InstanceCountHelper.increment(for: type)
+        
+        guard let object = storage[key] as? T else {
+            fatalError("register되지 않은 객체 호출: \(type)")
+        }
+        cache[key] = object
         return object
     }
 }
