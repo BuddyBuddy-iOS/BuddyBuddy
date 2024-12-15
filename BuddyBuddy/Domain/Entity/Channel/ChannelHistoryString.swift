@@ -14,5 +14,5 @@ struct ChannelHistoryString {
     let content: String
     let createdAt: String
     let files: [String]
-    let user: UserInfoString
+    let user: UserInfo
 }

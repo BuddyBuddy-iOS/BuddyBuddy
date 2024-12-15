@@ -114,20 +114,15 @@ final class DefaultChannelUseCase: ChannelUseCaseInterface {
         playgroundID: String,
         channelID: String
     ) -> Single<Result<[ChannelHistory], Error>> {
-        return repository.fetchChannelHistoryString(
+        return repository.fetchChannelHistory(
             playgroundID: playgroundID,
             channelID: channelID
         )
         .flatMap { [weak self] response -> Single<Result<[ChannelHistory], Error>> in
             guard let self else { return Single.just(.success([])) }
             switch response {
-            case .success(let value):
-                return repository.convertArrayToChannelHistory(
-                    channelID: channelID,
-                    channelHistoryStringArray: value)
-                .flatMap { _ in
-                    self.repository.fetchChannelHistoryTable(channelID: channelID)
-                }
+            case .success(_):
+                return repository.fetchChannelHistoryTable(channelID: channelID)
             case .failure(let error):
                 return Single.just(.failure(error))
             }
@@ -149,14 +144,8 @@ final class DefaultChannelUseCase: ChannelUseCaseInterface {
         .flatMap { [weak self] response -> Single<Result<[ChannelHistory], Error>> in
             guard let self else { return Single.just(.success([])) }
             switch response {
-            case .success(let value):
-                return repository.convertObjectToChannelHistory(
-                    channelID: channelID,
-                    channelHistoryString: value
-                )
-                .flatMap { _ in
-                    self.repository.fetchChannelHistoryTable(channelID: channelID)
-                }
+            case .success(_):
+                return repository.fetchChannelHistoryTable(channelID: channelID)
             case .failure(let error):
                 return Single.just(.failure(error))
             }
@@ -173,11 +162,6 @@ final class DefaultChannelUseCase: ChannelUseCaseInterface {
 
     func observeMessage(channelID: String) -> Observable<Result<[ChannelHistory], Error>> {
         return self.socketRepositoryInterface.observeChannelMessage()
-            .flatMap { channelHistoryString in
-                self.repository.convertObjectToChannelHistory(
-                    channelID: channelID,
-                    channelHistoryString: channelHistoryString)
-            }
             .flatMap { _ in
                 self.repository.fetchChannelHistoryTable(channelID: channelID)
             }
@@ -194,6 +178,7 @@ final class DefaultChannelUseCase: ChannelUseCaseInterface {
             }
         }
     }
+    
     private func changedChannelData(
         channelInfo: ChannelInfo,
         profileImages: [Data?]

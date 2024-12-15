@@ -59,7 +59,7 @@ final class DMListViewModel: ViewModelType {
                                 roomID: dmList.roomID
                             )
                             .asObservable(),
-                            self.dmUseCase.fetchDMUnRead(
+                            self.dmUseCase.fetchDMUnread(
                                 playgroundID: UserDefaultsManager.playgroundID,
                                 roomID: dmList.roomID
                             )

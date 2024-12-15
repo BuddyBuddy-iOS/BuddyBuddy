@@ -12,6 +12,6 @@ import RxSwift
 protocol SocketRepositoryInterface {
     func connectSocket(ID: String)
     func disConnectSocket()
-    func observeDMMessage() -> Observable<DMHistoryString>
-    func observeChannelMessage() -> Observable<ChannelHistoryString>
+    func observeDMMessage() -> Observable<DMHistory>
+    func observeChannelMessage() -> Observable<ChannelHistory>
 }

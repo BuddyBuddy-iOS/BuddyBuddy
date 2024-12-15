@@ -28,23 +28,15 @@ protocol ChannelRepositoryInterface {
     ) -> Single<Result<Bool, Error>>
     func exitChannel(channelID: String) -> Single<Result<Void, Error>>
     func deleteChannel(channelID: String) -> Single<Result<Void, Error>>
-    func fetchChannelHistoryString(
+    func fetchChannelHistory(
         playgroundID: String,
         channelID: String
-    ) -> Single<Result<[ChannelHistoryString], Error>>
+    ) -> Single<Result<[ChannelHistory], Error>>
     func sendChannelChat(
         playgroundID: String,
         channelID: String,
         message: String,
         files: [Data]
-    ) -> Single<Result<ChannelHistoryString, Error>>
-    func convertArrayToChannelHistory(
-        channelID: String,
-        channelHistoryStringArray: [ChannelHistoryString]
-    ) -> Single<Result<[ChannelHistory], Error>>
-    func convertObjectToChannelHistory(
-        channelID: String,
-        channelHistoryString: ChannelHistoryString
-    ) -> Single<Result<ChannelHistory, any Error>>
+    ) -> Single<Result<ChannelHistory, Error>>
     func fetchChannelHistoryTable(channelID: String) -> Single<Result<[ChannelHistory], Error>>
 }

@@ -137,7 +137,7 @@ final class ChannelImageTableViewCell: BaseTableViewCell {
             .toDate(format: .defaultDate)?
             .toString(format: .HourMinute)
         
-        imageType(dataArray: transition.files)
+//        imageType(dataArray: transition.files)
         profileImage.updateURL(url: transition.user.profileImage ?? "")
     }
     

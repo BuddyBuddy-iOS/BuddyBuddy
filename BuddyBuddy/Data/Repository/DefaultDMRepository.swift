@@ -22,35 +22,10 @@ final class DefaultDMRepository: DMRepositoryInterface {
         self.realmRepository = realmRepository
     }
     
-    func fetchDMList(playgroundID: String) -> RxSwift.Single<Result<[DMList], Error>> {
+    func fetchDMList(playgroundID: String) -> Single<Result<[DMList], Error>> {
         return networkService.callRequest(
             router: DMRouter.dmList(playgroundID: playgroundID),
             responseType: [DMListDTO].self
-        )
-        .map { result in
-            switch result {
-            case .success(let dto):
-                return .success(dto.map { $0.toDomain() })
-            case .failure(let error):
-                return .failure(error)
-            }
-        }
-    }
-    
-    func fetchDMHistoryString(
-        playgroundID: String,
-        roomID: String
-    ) -> RxSwift.Single<Result<[DMHistoryString], Error>> {
-        let chatHistory = realmRepository.readAllItem().filter {
-            $0.roomID == roomID
-        }.sorted { $0.createdAt < $1.createdAt }
-        return networkService.callRequest(
-            router: DMRouter.dmHistory(
-                playgroundID: playgroundID,
-                roomID: roomID,
-                cursorDate: chatHistory.last?.createdAt ?? ""
-            ),
-            responseType: [DMHistoryDTO].self
         )
         .map { result in
             switch result {
@@ -80,6 +55,9 @@ final class DefaultDMRepository: DMRepositoryInterface {
         .map { result in
             switch result {
             case .success(let dto):
+                dto.forEach {
+                    self.realmRepository.updateItem($0.toTable())
+                }
                 return .success(dto.map { $0.toDomain() })
             case .failure(let error):
                 return .failure(error)
@@ -116,7 +94,7 @@ final class DefaultDMRepository: DMRepositoryInterface {
         roomID: String,
         message: String,
         files: [Data]
-    ) -> Single<Result<DMHistoryString, Error>> {
+    ) -> Single<Result<DMHistory, Error>> {
         return networkService.callMultiPart(
             router: DMRouter.dmSend(
                 playgroundID: playgroundID,
@@ -129,111 +107,11 @@ final class DefaultDMRepository: DMRepositoryInterface {
         .map { result in
             switch result {
             case .success(let dto):
+                self.realmRepository.updateItem(dto.toTable())
                 return .success(dto.toDomain())
             case .failure(let error):
                 return .failure(error)
             }
-        }
-    }
-    
-    func convertArrayToDMHistory(
-        roomID: String,
-        dmHistoryStringArray: [DMHistoryString]
-    ) -> Single<Result<[DMHistory], Error>> {
-        let dmHistoryTasks = dmHistoryStringArray.map { dmHistoryString in
-            Single.zip(dmHistoryString.files.map { filePath in
-                self.networkService.downloadImage(router: DMRouter.dmImage(path: filePath))
-            })
-            .map { results -> [Data] in
-                let fileDataArray = results.compactMap { result in
-                    switch result {
-                    case .success(let value):
-                        return value
-                    case .failure(let error):
-                        print(error)
-                        return nil
-                    }
-                }
-                return fileDataArray
-            }
-            .map { [weak self] fileDataResult -> DMHistoryTable in
-                let list = List<Data>()
-                list.append(objectsIn: fileDataResult)
-                
-                let dmHistoryTable = DMHistoryTable(
-                    dmID: dmHistoryString.dmID,
-                    roomID: dmHistoryString.roomID,
-                    content: dmHistoryString.content,
-                    createdAt: dmHistoryString.createdAt,
-                    files: list,
-                    user: UserTable(
-                        userID: dmHistoryString.user.userID,
-                        email: dmHistoryString.user.email,
-                        nickname: dmHistoryString.user.nickname,
-                        profileImage: dmHistoryString.user.profileImage ?? ""
-                    )
-                )
-                self?.realmRepository.updateItem(dmHistoryTable)
-                return dmHistoryTable
-            }
-        }
-        return Single.zip(dmHistoryTasks)
-            .map { dmHistoryTables in
-                let histories = dmHistoryTables.map { table in
-                    table.toDomain()
-                }
-                return .success(histories)
-            }
-            .catch { error in
-                return .just(.failure(error))
-            }
-    }
-    
-    func convertObjectToDMHistory(
-        roomID: String,
-        dmHistoryString: DMHistoryString
-    ) -> Single<Result<DMHistory, any Error>> {
-        Single.zip(dmHistoryString.files.map { filePath in
-            self.networkService.downloadImage(router: DMRouter.dmImage(path: filePath))
-        })
-        .map { results -> [Data] in
-            let fileDataArray = results.compactMap { result in
-                switch result {
-                case .success(let value):
-                    return value
-                case .failure(let error):
-                    print(error)
-                    return nil
-                }
-            }
-            return fileDataArray
-        }
-        .map { [weak self] fileDataResult -> DMHistory in
-            let list = List<Data>()
-            list.append(objectsIn: fileDataResult)
-            
-            let dmHistoryTable = DMHistoryTable(
-                dmID: dmHistoryString.dmID,
-                roomID: dmHistoryString.roomID,
-                content: dmHistoryString.content,
-                createdAt: dmHistoryString.createdAt,
-                files: list,
-                user: UserTable(
-                    userID: dmHistoryString.user.userID,
-                    email: dmHistoryString.user.email,
-                    nickname: dmHistoryString.user.nickname,
-                    profileImage: dmHistoryString.user.profileImage ?? ""
-                )
-            )
-            self?.realmRepository.updateItem(dmHistoryTable)
-            
-            return dmHistoryTable.toDomain()
-        }
-        .map { dmhistory in
-            return .success(dmhistory)
-        }
-        .catch { error in
-            return .just(.failure(error))
         }
     }
     

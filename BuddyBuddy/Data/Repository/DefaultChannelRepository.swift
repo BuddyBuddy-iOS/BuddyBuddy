@@ -162,10 +162,10 @@ final class DefaultChannelRepository: ChannelRepositoryInterface {
             }
     }
     
-    func fetchChannelHistoryString(
+    func fetchChannelHistory(
         playgroundID: String,
         channelID: String
-    ) -> Single<Result<[ChannelHistoryString], Error>> {
+    ) -> Single<Result<[ChannelHistory], Error>> {
         let chatHistory = realmRepository.readAllItem().filter {
             $0.channelID == channelID
         }
@@ -192,7 +192,7 @@ final class DefaultChannelRepository: ChannelRepositoryInterface {
         channelID: String,
         message: String,
         files: [Data]
-    ) -> Single<Result<ChannelHistoryString, Error>> {
+    ) -> Single<Result<ChannelHistory, Error>> {
         return networkService.callMultiPart(
             router: ChannelRouter.sendChannelChat(
                 playgroundID: playgroundID,
@@ -209,111 +209,6 @@ final class DefaultChannelRepository: ChannelRepositoryInterface {
             case .failure(let error):
                 return .failure(error)
             }
-        }
-    }
-    
-    func convertArrayToChannelHistory(
-        channelID: String,
-        channelHistoryStringArray: [ChannelHistoryString]
-    ) -> Single<Result<[ChannelHistory], Error>> {
-        let channelHistoryTasks = channelHistoryStringArray.map { channelHistoryString in
-            Single.zip(channelHistoryString.files.map { filePath in
-                self.networkService.downloadImage(
-                    router: ChannelRouter.channelImage(path: filePath)
-                )
-            })
-            .map { results -> [Data] in
-                let fileDataArray = results.compactMap { result in
-                    switch result {
-                    case .success(let value):
-                        return value
-                    case .failure(let error):
-                        print(error)
-                        return nil
-                    }
-                }
-                return fileDataArray
-            }
-            .map { [weak self] fileDataResult -> ChannelHistoryTable in
-                let list = List<Data>()
-                list.append(objectsIn: fileDataResult)
-                
-                let channelHistoryTable = ChannelHistoryTable(
-                    channelID: channelHistoryString.channelID,
-                    channelName: channelHistoryString.channelName,
-                    chatID: channelHistoryString.chatID,
-                    content: channelHistoryString.content,
-                    createdAt: channelHistoryString.createdAt,
-                    files: list,
-                    user: UserTable(
-                        userID: channelHistoryString.user.userID,
-                        email: channelHistoryString.user.email,
-                        nickname: channelHistoryString.user.nickname,
-                        profileImage: channelHistoryString.user.profileImage ?? ""
-                    )
-                )
-                self?.realmRepository.updateItem(channelHistoryTable)
-                return channelHistoryTable
-            }
-        }
-        return Single.zip(channelHistoryTasks)
-            .map { channelHistoryTables in
-                let histories = channelHistoryTables.map { table in
-                    table.toDomain()
-                }
-                return .success(histories)
-            }
-            .catch { error in
-                return .just(.failure(error))
-            }
-    }
-    
-    func convertObjectToChannelHistory(
-        channelID: String,
-        channelHistoryString: ChannelHistoryString
-    ) -> Single<Result<ChannelHistory, any Error>> {
-        Single.zip(channelHistoryString.files.map { filePath in
-            self.networkService.downloadImage(router: ChannelRouter.channelImage(path: filePath))
-        })
-        .map { results -> [Data] in
-            let fileDataArray = results.compactMap { result in
-                switch result {
-                case .success(let value):
-                    return value
-                case .failure(let error):
-                    print(error)
-                    return nil
-                }
-            }
-            return fileDataArray
-        }
-        .map { [weak self] fileDataResult -> ChannelHistory in
-            let list = List<Data>()
-            list.append(objectsIn: fileDataResult)
-            
-            let channelHistoryTable = ChannelHistoryTable(
-                channelID: channelHistoryString.channelID,
-                channelName: channelHistoryString.channelName,
-                chatID: channelHistoryString.chatID,
-                content: channelHistoryString.content,
-                createdAt: channelHistoryString.createdAt,
-                files: list,
-                user: UserTable(
-                    userID: channelHistoryString.user.userID,
-                    email: channelHistoryString.user.email,
-                    nickname: channelHistoryString.user.nickname,
-                    profileImage: channelHistoryString.user.profileImage ?? ""
-                )
-            )
-            self?.realmRepository.updateItem(channelHistoryTable)
-            
-            return channelHistoryTable.toDomain()
-        }
-        .map { dmhistory in
-            return .success(dmhistory)
-        }
-        .catch { error in
-            return .just(.failure(error))
         }
     }
     

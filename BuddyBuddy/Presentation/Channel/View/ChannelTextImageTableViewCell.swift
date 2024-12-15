@@ -155,7 +155,7 @@ final class ChannelTextImageTableViewCell: BaseTableViewCell {
         speechBubble.updateText(transition.content)
         profileImage.updateURL(url: transition.user.profileImage ?? "")
         
-        imageType(dataArray: transition.files)
+//        imageType(dataArray: transition.files)
     }
     
     private func imageType(dataArray: [Data]) {
