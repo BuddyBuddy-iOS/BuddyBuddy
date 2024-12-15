@@ -73,21 +73,6 @@ final class DefaultChannelUseCase: ChannelUseCaseInterface {
                 switch result {
                 case .success(let channelInfo):
                     return .just(.success(channelInfo))
-//                    let singleProfileImage = channelInfo.channelMembers.map { member in
-//                        self.userRepository.getUserProfileImage(imagePath: member.profileImage)
-//                    }
-//                    
-//                    return Single.zip(singleProfileImage) { [weak self] profileImages in
-//                        guard let self else { return .success(emtpyReturn)}
-//                        
-//                        let profileImages = self.changeDataArray(imageResults: profileImages)
-//                        let channel = self.changedChannelData(
-//                            channelInfo: channelInfo,
-//                            profileImages: profileImages
-//                        )
-//                        
-//                        return .success(channel)
-//                    }
                 case .failure(let error):
                     return .just(.failure(error))
                 }
@@ -195,26 +180,4 @@ final class DefaultChannelUseCase: ChannelUseCaseInterface {
             }
         }
     }
-//    private func changedChannelData(
-//        channelInfo: ChannelInfo,
-//        profileImages: [Data?]
-//    ) -> ChannelInfoData {
-//        let members = zip(channelInfo.channelMembers, profileImages).map { member, imageData in
-//            UserProfileData(
-//                userID: member.userID,
-//                email: member.email,
-//                nickname: member.nickname,
-//                profileImage: imageData
-//            )
-//        }
-//        
-//        return ChannelInfoData(
-//            channelID: channelInfo.channelID,
-//            channelName: channelInfo.channelName,
-//            description: channelInfo.description,
-//            coverImage: channelInfo.coverImage,
-//            ownerID: channelInfo.ownerID,
-//            channelMembers: members
-//        )
-//    }
 }
