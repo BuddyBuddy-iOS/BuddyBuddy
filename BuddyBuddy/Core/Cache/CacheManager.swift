@@ -30,6 +30,8 @@ final class CacheManager {
     private init() { }
     
     func loadImg(urlPath: String) async throws -> UIImage {
+        let path = urlPath.replacingOccurrences(of: "/", with: "")
+        
         // Memory Cache
         if let image = cache.object(forKey: urlPath as NSString) {
             return image
@@ -37,7 +39,7 @@ final class CacheManager {
         
         // Disk Cache
         var filePath = URL(fileURLWithPath: diskPath)
-        filePath.appendPathComponent(urlPath)
+        filePath.appendPathComponent(path)
         
         if fileManager.fileExists(atPath: filePath.path) {
             if let imageData = try? Data(contentsOf: filePath),
@@ -55,13 +57,12 @@ final class CacheManager {
                     code: 1
                 )
             }
+        } else {
+            let image = try await imageDownload(urlPath)
+            
+            imgCaching(image, urlPath: path)
+            return image
         }
-        
-        let image = try await imageDownload(urlPath)
-         
-        imgCaching(image, urlPath: urlPath)
-        
-        return image
     }
     
     private func imageDownload(_ urlPath: String) async throws -> UIImage {
