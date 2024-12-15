@@ -7,8 +7,6 @@
 
 import UIKit
 
-import RxSwift
-
 final class CacheManager {
     static let shared = CacheManager()
     
