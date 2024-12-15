@@ -30,7 +30,10 @@ final class CacheManager {
     private init() { }
     
     func loadImg(urlPath: String) async throws -> UIImage {
-        let path = urlPath.replacingOccurrences(of: "/", with: "")
+        let path = urlPath.replacingOccurrences(
+            of: "/",
+            with: ""
+        )
         
         // Memory Cache
         if let image = cache.object(forKey: urlPath as NSString) {
@@ -79,7 +82,10 @@ final class CacheManager {
     }
     
     private func imgCaching(_ image: UIImage, urlPath: String) {
-        cache.setObject(image, forKey: urlPath as NSString)
+        cache.setObject(
+            image,
+            forKey: urlPath as NSString
+        )
         
         var filePath = URL(fileURLWithPath: diskPath)
         filePath.appendPathComponent(urlPath)
