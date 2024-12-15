@@ -65,12 +65,14 @@ final class PlaygroundViewController: BaseViewController {
                 cellType: PlaygroundTableViewCell.self
             )) { [weak self] _, value, cell in
                 guard let self else { return }
-                cell.configureCell(value)
                 cell.moreButton.rx.tap
                     .bind { _ in
                         self.moreBtnTapped.accept(value.workspaceID)
                     }
                     .disposed(by: disposeBag)
+                Task {
+                    await cell.configureCell(value)
+                }
             }
             .disposed(by: disposeBag)
         

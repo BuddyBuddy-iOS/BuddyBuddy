@@ -83,10 +83,17 @@ final class PlaygroundTableViewCell: BaseTableViewCell {
         }
     }
     
-    func configureCell(_ data: Workspace) {
+    func configureCell(_ data: Workspace) async {
         titleLable.text = data.name
         dateLabel.text = data.createdAt.toDate(format: .defaultDate)?.toString(format: .simpleDate)
         let isHighlight = UserDefaultsManager.playgroundID == data.workspaceID
         containerView.backgroundColor = isHighlight ? .white : .clear
+        guard let imgString = data.coverImage else { return }
+        do {
+            let image = try await CacheManager.shared.loadImg(urlPath: imgString)
+            corverImgView.image = image
+        } catch {
+            // 기본 이미지로 처리하기
+        }
     }
 }
