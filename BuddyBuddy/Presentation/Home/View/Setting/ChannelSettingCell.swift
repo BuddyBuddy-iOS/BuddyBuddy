@@ -44,16 +44,13 @@ final class ChannelSettingCell: BaseTableViewCell {
         }
     }
     
-    func setProfileUI(profileImg: String?, profileName: String) async {
-        do {
-            guard let profileImgString = profileImg else {
-                profileImgView.image = UIImage(named: "BasicProfileImage")
-                return
-            }
-            let image = try await CacheManager.shared.loadImg(urlPath: profileImgString)
-        } catch {
-            profileImgView.image = UIImage(named: "BasicProfileImage")
-        }
+    func setProfileUI(profileImg: String?, profileName: String) {
+        profileImgView.loadImage(
+            with: profileImg,
+            defaultImg: UIImage(
+                named: "BasicProfileImage"
+            )
+        )
         nameLabel.text = profileName
     }
     

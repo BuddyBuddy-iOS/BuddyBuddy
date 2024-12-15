@@ -74,21 +74,14 @@ final class SearchUserTableViewCell: BaseTableViewCell {
     func setupUI(
         nickname: String,
         profile: String?
-    ) async {
-        do {
-            guard let profileString = profile else {
-                profileImage.image = UIImage(named: "BasicProfileImage")
-                return
-            }
-            let image = try await CacheManager.shared.loadImg(urlPath: profileString)
-            profileImage.image = image
-        } catch {
-            profileImage.image = UIImage(named: "BasicProfileImage")
-        }
-        
+    ) {
         userName.text = nickname
         myLanguage.setupLanguages(language: Country.allCases.randomElement() ?? .us)
         exchangeLanguage.setupLanguages(language: Country.allCases.randomElement() ?? .kr)
+        profileImage.loadImage(
+            with: profile,
+            defaultImg: UIImage(named: "BasicProfileImage")
+        )
     }
     
     override func layoutSubviews() {

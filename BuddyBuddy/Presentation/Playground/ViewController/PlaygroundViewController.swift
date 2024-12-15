@@ -70,9 +70,7 @@ final class PlaygroundViewController: BaseViewController {
                         self.moreBtnTapped.accept(value.workspaceID)
                     }
                     .disposed(by: disposeBag)
-                Task {
-                    await cell.configureCell(value)
-                }
+                cell.configureCell(value)
             }
             .disposed(by: disposeBag)
         

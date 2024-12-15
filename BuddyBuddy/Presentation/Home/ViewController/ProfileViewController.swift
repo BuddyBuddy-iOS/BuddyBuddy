@@ -42,15 +42,10 @@ final class ProfileViewController: BaseViewController {
                     name: user.nickname,
                     email: user.email
                 )
-                guard let imgString = user.profileImage else {
-                    owner.profileImgView.image = UIImage(named: "BasicProfileImage")
-                    return
-                }
-                
-                Task {
-                    let image = try await CacheManager.shared.loadImg(urlPath: imgString)
-                    owner.profileImgView.image = image
-                }
+                owner.profileImgView.loadImage(
+                    with: user.profileImage,
+                    defaultImg: UIImage(named: "BasicProfileImage")
+                )
             }
             .disposed(by: disposeBag)
     }

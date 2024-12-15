@@ -106,13 +106,10 @@ final class SearchViewController: BaseNavigationViewController {
                         withIdentifier: SearchUserTableViewCell.identifier,
                         for: IndexPath(row: index, section: 0)
                     ) as? SearchUserTableViewCell else { return UITableViewCell() }
-                    Task {
-                        await cell.setupUI(
-                            nickname: user.name,
-                            profile: user.file
-                        )
-                        
-                    }
+                    cell.setupUI(
+                        nickname: user.name,
+                        profile: user.file
+                    )
                     return cell
                 }
             }

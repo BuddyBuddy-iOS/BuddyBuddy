@@ -79,9 +79,6 @@ final class ChannelAdminTableViewCell: BaseTableViewCell {
             return
         }
         
-        Task {
-            let image = try await CacheManager.shared.loadImg(urlPath: imgString)
-            profileImgView.image = image
-        }
+        profileImgView.loadImage(with: imgString)
     }
 }
