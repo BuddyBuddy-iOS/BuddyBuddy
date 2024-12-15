@@ -68,16 +68,20 @@ final class ChannelAdminTableViewCell: BaseTableViewCell {
     }
     
     func setUserProfile(
-        profileData: Data?,
+        profile: String?,
         name: String,
         email: String
     ) {
-        if profileData == nil {
-            profileImgView.image = UIImage(named: "BasicProfileImage")
-        } else {
-            profileImgView.image = profileData?.toUIImage()
-        }
         profileNameLabel.text = name
         emailLabel.text = email
+        
+        guard let imgString = profile else {
+            return
+        }
+        
+        Task {
+            let image = try await CacheManager.shared.loadImg(urlPath: imgString)
+            profileImgView.image = image
+        }
     }
 }

@@ -73,11 +73,16 @@ final class SearchUserTableViewCell: BaseTableViewCell {
     
     func setupUI(
         nickname: String,
-        profile: Data?
-    ) {
-        if let profile {
-            profileImage.image = UIImage(data: profile)
-        } else {
+        profile: String?
+    ) async {
+        do {
+            guard let profileString = profile else {
+                profileImage.image = UIImage(named: "BasicProfileImage")
+                return
+            }
+            let image = try await CacheManager.shared.loadImg(urlPath: profileString)
+            profileImage.image = image
+        } catch {
             profileImage.image = UIImage(named: "BasicProfileImage")
         }
         

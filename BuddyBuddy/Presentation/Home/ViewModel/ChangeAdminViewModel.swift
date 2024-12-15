@@ -39,13 +39,13 @@ final class ChangeAdminViewModel: ViewModelType {
     }
     
     struct Output {
-        let channelMembers: Driver<[UserProfileData]>
+        let channelMembers: Driver<[UserProfile]>
         let showAlert: Driver<Bool>
         let alertContents: Driver<String>
     }
     
     func transform(input: Input) -> Output {
-        let channelMembers = PublishRelay<[UserProfileData]>()
+        let channelMembers = PublishRelay<[UserProfile]>()
         let showAlert = PublishRelay<Bool>()
         let alertContents = PublishRelay<String>()
         

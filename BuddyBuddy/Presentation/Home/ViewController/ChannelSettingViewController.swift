@@ -86,11 +86,12 @@ final class ChannelSettingViewController: BaseViewController {
                 cellIdentifier: ChannelSettingCell.identifier,
                 cellType: ChannelSettingCell.self
             )) { _, data, cell in
-                // TODO: Profile Image 통신
-                cell.setProfileUI(
-                    profileImg: data.profileImage,
-                    profileName: data.nickname
-                )
+                Task {
+                    await cell.setProfileUI(
+                        profileImg: data.profileImage,
+                        profileName: data.nickname
+                    )
+                }
             }
             .disposed(by: disposeBag)
         

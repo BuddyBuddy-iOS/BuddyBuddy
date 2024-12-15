@@ -14,9 +14,9 @@ struct UserProfile {
     let profileImage: String?
 }
 
-struct UserProfileData {
-    let userID: String
-    let email: String
-    let nickname: String
-    let profileImage: Data?
-}
+//struct UserProfileData {
+//    let userID: String
+//    let email: String
+//    let nickname: String
+//    let profileImage: Data?
+//}

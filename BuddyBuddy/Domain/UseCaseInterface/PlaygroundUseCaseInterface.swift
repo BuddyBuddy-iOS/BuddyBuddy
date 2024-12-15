@@ -10,8 +10,8 @@ import Foundation
 import RxSwift
 
 protocol PlaygroundUseCaseInterface: AnyObject {
-    func fetchPlaygroundInfoWithImage() -> Single<Result<[SearchResultWithImage], Error>>
-    func searchInPlaygroundWithImage(text: String) -> Single<Result<[SearchResultWithImage], Error>>
+    func fetchPlaygroundInfo() -> Single<Result<[SearchResult], Error>>
+    func searchInPlayground(text: String) -> Single<Result<[SearchResult], Error>>
     func fetchPlaygroundList() -> Single<Result<PlaygroundList, Error>>
     func fetchCurrentPlayground() -> Single<Result<Playground, Error>>
 }

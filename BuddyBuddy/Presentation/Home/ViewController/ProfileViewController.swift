@@ -42,15 +42,14 @@ final class ProfileViewController: BaseViewController {
                     name: user.nickname,
                     email: user.email
                 )
-            }
-            .disposed(by: disposeBag)
-        
-        output.userProfileImage
-            .drive(with: self) { owner, imageData in
-                if imageData == nil {
+                guard let imgString = user.profileImage else {
                     owner.profileImgView.image = UIImage(named: "BasicProfileImage")
-                } else {
-                    owner.profileImgView.image = imageData
+                    return
+                }
+                
+                Task {
+                    let image = try await CacheManager.shared.loadImg(urlPath: imgString)
+                    owner.profileImgView.image = image
                 }
             }
             .disposed(by: disposeBag)
