@@ -23,6 +23,7 @@ protocol NetworkProtocol {
     ) -> Single<Result<T, Error>>
 
     func downloadImage(router: TargetType) -> Single<Result<Data?, Error>>
+    func downloadImage(router: TargetType) async throws -> Data
     
     func callRequest(
         router: TargetType
