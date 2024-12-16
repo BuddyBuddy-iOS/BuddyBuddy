@@ -21,18 +21,6 @@ final class DefaultUserUseCase: UserUseCaseInterface {
         return repository.checkUserProfile(userID: userID)
     }
     
-    func getUserProfileImage(imagePath: String?) -> Single<Data?> {
-        return repository.getUserProfileImage(imagePath: imagePath)
-            .flatMap { result in
-                switch result {
-                case .success(let data):
-                    return Single.just(data)
-                case .failure(_):
-                    return Single.just(nil)
-                }
-            }
-    }
-    
     func loginWithApple(_ user: AppleUser) -> Single<Result<Bool, Error>> {
         let query = AppleLoginQuery(
             idToken: String(data: user.token ?? Data(), encoding: .utf8) ?? "",

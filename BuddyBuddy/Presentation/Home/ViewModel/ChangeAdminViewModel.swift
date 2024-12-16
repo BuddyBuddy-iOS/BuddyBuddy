@@ -30,23 +30,23 @@ final class ChangeAdminViewModel: ViewModelType {
     struct Input {
         let backBtnTapped: Observable<Void>
         let viewWillAppear: Observable<Void>
-        let selectedUser: Observable<UserProfileData>
+        let selectedUser: Observable<UserProfile>
         let cancelBtnTapped: Observable<Void>
         let changeBtnTapped: Observable<Void>
     }
     
     struct Output {
-        let channelMembers: Driver<[UserProfileData]>
+        let channelMembers: Driver<[UserProfile]>
         let showAlert: Driver<Bool>
         let alertContents: Driver<String>
     }
     
     func transform(input: Input) -> Output {
-        let channelMembers = PublishRelay<[UserProfileData]>()
+        let channelMembers = PublishRelay<[UserProfile]>()
         let showAlert = BehaviorSubject<Bool>(value: false)
         let alertContents = PublishRelay<String>()
         
-        var selectedUser = UserProfileData(
+        var selectedUser = UserProfile(
             userID: "",
             email: "",
             nickname: "",

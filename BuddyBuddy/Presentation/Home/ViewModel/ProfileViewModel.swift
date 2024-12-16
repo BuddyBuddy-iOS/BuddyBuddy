@@ -5,7 +5,7 @@
 //  Created by Jisoo Ham on 11/14/24.
 //
 
-import UIKit
+import Foundation
 
 import RxCocoa
 import RxSwift
@@ -43,13 +43,10 @@ final class ProfileViewModel: ViewModelType {
     
     struct Output {
         let userProfile: Driver<UserProfile>
-        let userProfileImage: Driver<UIImage?>
     }
     
     func transform(input: Input) -> Output {
         let userProfile = PublishSubject<UserProfile>()
-        let userProfileImage = PublishSubject<UIImage?>()
-        
         var selectedUser = UserProfile(userID: "", email: "", nickname: "", profileImage: "")
         
         input.viewWillAppear
@@ -62,16 +59,6 @@ final class ProfileViewModel: ViewModelType {
                 case .success(let user):
                     selectedUser = user
                     userProfile.onNext(user)
-                    owner.userUseCase.getUserProfileImage(imagePath: user.profileImage)
-                        .subscribe { data in
-                            switch data {
-                            case .success(let data):
-                                userProfileImage.onNext(data?.toUIImage())
-                            case .failure(_):
-                                userProfileImage.onNext(nil)
-                            }
-                        }
-                        .disposed(by: owner.disposeBag)
                 case .failure(let error):
                     print(error)
                 }
@@ -84,9 +71,6 @@ final class ProfileViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        return Output(
-            userProfile: userProfile.asDriver(onErrorJustReturn: dummyUser),
-            userProfileImage: userProfileImage.asDriver(onErrorJustReturn: nil)
-        )
+        return Output(userProfile: userProfile.asDriver(onErrorJustReturn: dummyUser))
     }
 }

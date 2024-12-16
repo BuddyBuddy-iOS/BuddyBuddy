@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 
 final class SearchUserTableViewCell: BaseTableViewCell {
+    @Dependency(CacheManager.self)
+    private var cache: CacheManager
     private let profileImage: UIImageView = {
         let view = UIImageView()
         view.clipsToBounds = true
@@ -73,17 +75,18 @@ final class SearchUserTableViewCell: BaseTableViewCell {
     
     func setupUI(
         nickname: String,
-        profile: Data?
+        profile: String?
     ) {
-        if let profile {
-            profileImage.image = UIImage(data: profile)
-        } else {
-            profileImage.image = UIImage(named: "BasicProfileImage")
-        }
-        
         userName.text = nickname
         myLanguage.setupLanguages(language: Country.allCases.randomElement() ?? .us)
         exchangeLanguage.setupLanguages(language: Country.allCases.randomElement() ?? .kr)
+        guard let imgPath = profile else {
+            profileImage.image = UIImage(named: "BasicProfileImage")
+            return
+        }
+        Task {
+            profileImage.image = try await cache.loadImg(urlPath: imgPath)
+        }
     }
     
     override func layoutSubviews() {

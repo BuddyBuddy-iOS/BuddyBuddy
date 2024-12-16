@@ -46,7 +46,7 @@ final class ChannelAdminViewController: BaseViewController {
         let input = ChangeAdminViewModel.Input(
             backBtnTapped: topView.backBtn.rx.tap.map { () },
             viewWillAppear: rx.viewWillAppear,
-            selectedUser: userTableView.rx.modelSelected(UserProfileData.self).map { $0 },
+            selectedUser: userTableView.rx.modelSelected(UserProfile.self).map { $0 },
             cancelBtnTapped: adminAlert.leftButton.rx.tap.map { () },
             changeBtnTapped: adminAlert.rightButton.rx.tap.map { () }
         )
@@ -58,7 +58,7 @@ final class ChannelAdminViewController: BaseViewController {
                 cellType: ChannelAdminTableViewCell.self
             )) { _, value, cell in
                 cell.setUserProfile(
-                    profileData: value.profileImage,
+                    profile: value.profileImage,
                     name: value.nickname,
                     email: value.email
                 )

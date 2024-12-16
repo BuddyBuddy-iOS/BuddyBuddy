@@ -8,6 +8,6 @@
 import Foundation
 
 enum SearchResultType {
-    case channel(SearchResultWithImage)
-    case user(SearchResultWithImage)
+    case channel(SearchResult)
+    case user(SearchResult)
 }

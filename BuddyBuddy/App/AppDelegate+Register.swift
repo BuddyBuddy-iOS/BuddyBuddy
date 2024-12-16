@@ -16,6 +16,11 @@ extension AppDelegate {
         let socketService: SocketProtocol = SocketService()
         
         DIContainer.register(
+            type: CacheManager.self,
+            CacheManager(networkService: networkService)
+        )
+        
+        DIContainer.register(
             type: DMRepositoryInterface.self,
             DefaultDMRepository(
                 networkService: networkService,
