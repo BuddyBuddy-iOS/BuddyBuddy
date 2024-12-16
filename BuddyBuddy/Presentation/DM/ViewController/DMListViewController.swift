@@ -57,7 +57,8 @@ final class DMListViewController: BaseNavigationViewController {
     
     override func setConstraints() {
         dmListTableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(safeArea).offset(10)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         noChatListImage.snp.makeConstraints { make in
             make.centerX.equalTo(view.safeAreaLayoutGuide)

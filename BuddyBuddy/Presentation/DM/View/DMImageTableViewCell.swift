@@ -12,6 +12,8 @@ import SnapKit
 final class DMImageTableViewCell: BaseTableViewCell {
     private let profileImage: ProfileImageView = {
         let view = ProfileImageView()
+        view.clipsToBounds = true
+        view.contentMode = .scaleToFill
         view.layer.cornerRadius = 10
         return view
     }()
@@ -133,7 +135,7 @@ final class DMImageTableViewCell: BaseTableViewCell {
     }
     
     func designCell(_ transition: DMHistory) {
-        userName.text = transition.user.nickname
+        userName.text = transition.user.nickname.exceptLang
         chatTime.text = transition.createdAt
             .toDate(format: .defaultDate)?
             .toString(format: .HourMinute)

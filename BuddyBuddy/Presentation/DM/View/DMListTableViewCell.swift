@@ -12,6 +12,8 @@ import SnapKit
 final class DMListTableViewCell: BaseTableViewCell {
     private let profileImage: ProfileImageView = {
         let view = ProfileImageView()
+        view.clipsToBounds = true
+        view.contentMode = .scaleAspectFit
         view.layer.cornerRadius = 25
         return view
     }()
@@ -68,7 +70,7 @@ final class DMListTableViewCell: BaseTableViewCell {
     
     func designCell(_ transition: DMListInfo) {
         profileImage.updateURL(url: transition.profileImg)
-        userName.text = transition.userName
+        userName.text = transition.userName.exceptLang
         lastText.text = transition.lastText
         
         let defaultDate = transition.lastTime.toDate(format: .defaultDate)

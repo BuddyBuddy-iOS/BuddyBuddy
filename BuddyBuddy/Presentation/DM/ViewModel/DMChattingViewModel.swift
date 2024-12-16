@@ -54,7 +54,7 @@ final class DMChattingViewModel: ViewModelType {
         let updateDMListTableView = PublishSubject<[ChatSection<DMHistory>]>()
         let scrollToDown = PublishSubject<Void>()
         let removeChattingBarText = PublishSubject<Void>()
-        let dmListInfoSubject = BehaviorRelay<String>(value: userName ?? "")
+        let dmListInfoSubject = BehaviorRelay<String>(value: userName?.exceptLang ?? "")
         
         input.viewWillAppearTrigger
             .withUnretained(self)
@@ -62,7 +62,7 @@ final class DMChattingViewModel: ViewModelType {
                 switch owner.dmChatState {
                 case .fromList(let dmListInfo):
                     owner.roomID = dmListInfo.roomID
-                    owner.userName = dmListInfo.userName
+                    owner.userName = dmListInfo.userName.exceptLang
                     return owner.dmUseCase.fetchDMHistory(
                         playgroundID: UserDefaultsManager.playgroundID,
                         roomID: dmListInfo.roomID
@@ -70,7 +70,7 @@ final class DMChattingViewModel: ViewModelType {
                 case .fromProfile(let userID):
                     let dmListInfo = owner.dmUseCase.findRoomIDFromUser(userID: userID)
                     owner.roomID = dmListInfo.0
-                    owner.userName = dmListInfo.1
+                    owner.userName = dmListInfo.1.exceptLang
                     return owner.dmUseCase.fetchDMHistory(
                         playgroundID: UserDefaultsManager.playgroundID,
                         roomID: dmListInfo.0
