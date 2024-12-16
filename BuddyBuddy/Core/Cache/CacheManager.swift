@@ -60,7 +60,10 @@ final class CacheManager {
         } else {
             let image = try await imageDownload(urlPath)
             
-            imgCaching(image, urlPath: path)
+            imgCaching(
+                image,
+                urlPath: path
+            )
             return image
         }
     }

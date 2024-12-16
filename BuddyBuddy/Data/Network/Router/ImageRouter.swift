@@ -29,7 +29,7 @@ extension ImageRouter: TargetType {
         }
     }
     
-    var header: [String : String] {
+    var header: [String: String] {
         switch self {
         case .loadImage:
             return [
