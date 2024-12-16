@@ -2032,7 +2032,7 @@
 				CODE_SIGN_ENTITLEMENTS = BuddyBuddy/Resources/BuddyBuddy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VC8Q8WBRQ3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BuddyBuddy/Resources/Info.plist;
@@ -2067,7 +2067,7 @@
 				CODE_SIGN_ENTITLEMENTS = BuddyBuddy/Resources/BuddyBuddy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VC8Q8WBRQ3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BuddyBuddy/Resources/Info.plist;
