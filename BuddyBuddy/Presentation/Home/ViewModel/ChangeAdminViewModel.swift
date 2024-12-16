@@ -27,13 +27,10 @@ final class ChangeAdminViewModel: ViewModelType {
         self.channelID = channelID
     }
     
-    /*
-     Cell Tap - 관리자 변경 trigger -> output alert 표출 -> 화면 dismiss
-     */
     struct Input {
         let backBtnTapped: Observable<Void>
         let viewWillAppear: Observable<Void>
-        let selectedUser: Observable<UserProfile>
+        let selectedUser: Observable<UserProfileData>
         let cancelBtnTapped: Observable<Void>
         let changeBtnTapped: Observable<Void>
     }
@@ -46,14 +43,14 @@ final class ChangeAdminViewModel: ViewModelType {
     
     func transform(input: Input) -> Output {
         let channelMembers = PublishRelay<[UserProfileData]>()
-        let showAlert = PublishRelay<Bool>()
+        let showAlert = BehaviorSubject<Bool>(value: false)
         let alertContents = PublishRelay<String>()
         
-        var selectedUser = UserProfile(
+        var selectedUser = UserProfileData(
             userID: "",
             email: "",
             nickname: "",
-            profileImage: ""
+            profileImage: nil
         )
         
         input.viewWillAppear
@@ -76,14 +73,14 @@ final class ChangeAdminViewModel: ViewModelType {
         input.selectedUser
             .bind { user in
                 selectedUser = user
-                showAlert.accept(true)
+                showAlert.onNext(true)
                 alertContents.accept(user.nickname)
             }
             .disposed(by: disposeBag)
         
         input.cancelBtnTapped
             .bind { _ in
-                showAlert.accept(false)
+                showAlert.onNext(false)
             }
             .disposed(by: disposeBag)
         
@@ -98,8 +95,8 @@ final class ChangeAdminViewModel: ViewModelType {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let value):
-                    showAlert.accept(!value)
-                    owner.coordinator.dismissVC()
+                    showAlert.onNext(!value)
+                    owner.coordinator.dismissModal()
                 case .failure(let error):
                     print(error)
                 }
@@ -108,7 +105,7 @@ final class ChangeAdminViewModel: ViewModelType {
         
         input.backBtnTapped
             .bind(with: self) { owner, _ in
-                owner.coordinator.dismissVC()
+                owner.coordinator.dismissModal()
             }
             .disposed(by: disposeBag)
         

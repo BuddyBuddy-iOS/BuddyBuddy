@@ -74,7 +74,6 @@ final class HomeViewModel: ViewModelType {
                 switch result {
                 case .success(let value):
                     owner.channelList.accept(value)
-                    print("🌞")
                 case .failure(let error):
                     print(error)
                 }
