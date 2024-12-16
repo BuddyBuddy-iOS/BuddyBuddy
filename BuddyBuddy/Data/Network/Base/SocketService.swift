@@ -32,6 +32,18 @@ final class SocketService: SocketProtocol {
             name: NSNotification.Name("willEnterForeground"), 
             object: nil
         )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(networkConnected),
+            name: .networkConnected,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(networkDisconnected),
+            name: .networkDisconnected,
+            object: nil
+        )
     }
     
     deinit {
@@ -126,6 +138,19 @@ final class SocketService: SocketProtocol {
     }
     
     @objc private func willEnterForeground() {
+        establishConnection()
+    }
+    
+    @objc private func networkDisconnected() {
+        if let socket = socket {
+            closeConnection()
+            print("socket is disconnected")
+        } else {
+            print("Error: Socket is nil")
+        }
+    }
+    
+    @objc private func networkConnected() {
         establishConnection()
     }
 }

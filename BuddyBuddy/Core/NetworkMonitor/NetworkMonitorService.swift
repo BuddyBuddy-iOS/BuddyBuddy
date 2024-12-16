@@ -25,18 +25,17 @@ final class NetworkMonitorService: NetworkMonitorInterface {
         monitor.start(queue: queue)
         
         monitor.pathUpdateHandler = { [weak self] path in
+            guard let self else { return }
             switch path.status {
             case .satisfied:
                 print("연결 O")
-                self?.dismissNetworkWindow()
+                self.dismissNetworkWindow()
             case .unsatisfied:
                 print("연결 X")
-                self?.showNetworkWindow()
-            case .requiresConnection:
+                self.showNetworkWindow()
+            default:
                 print("연결 X")
-                self?.showNetworkWindow()
-            @unknown default:
-                fatalError()
+                self.showNetworkWindow()
             }
         }
     }

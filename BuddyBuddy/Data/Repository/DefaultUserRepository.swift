@@ -82,7 +82,7 @@ final class DefaultUserRepository: UserRepositoryInterface {
     
     func loginWithEmail() -> Single<Result<Bool, Error>> {
         let login = LoginQuery(
-            email: "compose1@coffee.com",
+            email: "casadepapel@gmail.com",
             password: "1q2w3e4rQ!"
         )
         
