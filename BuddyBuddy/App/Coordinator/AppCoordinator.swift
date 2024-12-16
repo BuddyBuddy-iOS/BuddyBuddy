@@ -71,7 +71,7 @@ final class AppCoordinator: Coordinator {
     
     private func checkPlayground() {
         if UserDefaultsManager.playgroundID == UserDefaultsManager.Key.playgroundID.rawValue {
-            UserDefaultsManager.playgroundID = "70b565b8-9ca1-483f-b812-15d3e57b5cf4"
+            UserDefaultsManager.playgroundID = "459fab2a-3959-45db-8abb-a9684e43c14f"
         }
     }
 }

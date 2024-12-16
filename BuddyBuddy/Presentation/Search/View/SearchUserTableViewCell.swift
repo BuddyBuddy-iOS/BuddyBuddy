@@ -77,8 +77,8 @@ final class SearchUserTableViewCell: BaseTableViewCell {
         nickname: String,
         profile: String?
     ) {
-        userName.text = nickname
-        myLanguage.setupLanguages(language: Country.allCases.randomElement() ?? .us)
+        userName.text = nickname.exceptLang
+        myLanguage.setupLanguages(language: Country(rawValue: nickname.extractLang) ?? .us)
         exchangeLanguage.setupLanguages(language: Country.allCases.randomElement() ?? .kr)
         guard let imgPath = profile else {
             profileImage.image = UIImage(named: "BasicProfileImage")

@@ -42,7 +42,7 @@ final class ProfileViewController: BaseViewController {
         output.userProfile
             .drive(with: self) { owner, user in
                 owner.profileBottomView.setProfileView(
-                    name: user.nickname,
+                    name: user.nickname.exceptLang,
                     email: user.email
                 )
                 guard let imgPath = user.profileImage else {

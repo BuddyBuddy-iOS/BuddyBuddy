@@ -65,7 +65,7 @@ enum Country: String, CaseIterable {
         case .us:
             return "EN"
         case .jp:
-            return "JA"
+            return "JP"
         case .cn:
             return "ZH"
         case .es:
