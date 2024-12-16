@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C005437F2D0DF4860057B6DC /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C005437E2D0DF4860057B6DC /* CacheManager.swift */; };
 		C00543812D0EADD40057B6DC /* ImageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00543802D0EADD40057B6DC /* ImageRouter.swift */; };
-		C00543832D0F07EF0057B6DC /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00543822D0F07EF0057B6DC /* UIImageView+.swift */; };
 		C00F90C02CE75EC800B7DD62 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00F90BF2CE75EC800B7DD62 /* NetworkLogger.swift */; };
 		C0290A7B2D082BA3003B8A5D /* SlideType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0290A7A2D082BA3003B8A5D /* SlideType.swift */; };
 		C0290A7D2D083F1B003B8A5D /* SideMenuHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0290A7C2D083F1B003B8A5D /* SideMenuHandler.swift */; };
@@ -263,7 +262,6 @@
 /* Begin PBXFileReference section */
 		C005437E2D0DF4860057B6DC /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		C00543802D0EADD40057B6DC /* ImageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRouter.swift; sourceTree = "<group>"; };
-		C00543822D0F07EF0057B6DC /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		C00F90BF2CE75EC800B7DD62 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		C0290A7A2D082BA3003B8A5D /* SlideType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideType.swift; sourceTree = "<group>"; };
 		C0290A7C2D083F1B003B8A5D /* SideMenuHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHandler.swift; sourceTree = "<group>"; };
@@ -1150,7 +1148,6 @@
 				C91F67432CF098C900C84265 /* Data+.swift */,
 				C09FA8E32CEC62A200613FEA /* Date+.swift */,
 				C97955352D0AD6630033EA15 /* Notification+.swift */,
-				C00543822D0F07EF0057B6DC /* UIImageView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1693,7 +1690,6 @@
 				C98363E42CE5A3E800AC51CA /* SystemImageLabelView.swift in Sources */,
 				C91BBC2D2CE4F830001EFC70 /* InviteMemberViewModel.swift in Sources */,
 				C9F20F3A2CDB5F070043351E /* TabKind.swift in Sources */,
-				C00543832D0F07EF0057B6DC /* UIImageView+.swift in Sources */,
 				C91BBC212CE4C7A7001EFC70 /* ChannelAdminTableViewCell.swift in Sources */,
 				C91F672E2CEE427600C84265 /* UserRepositoryInterface.swift in Sources */,
 				C02D93BF2CFC4EBA003471B9 /* LeftAlignButton.swift in Sources */,

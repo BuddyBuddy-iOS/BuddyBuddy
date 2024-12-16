@@ -12,6 +12,9 @@ import RxSwift
 import SnapKit
 
 final class ProfileViewController: BaseViewController {
+    @Dependency(CacheManager.self)
+    private var cache: CacheManager
+    
     private let disposeBag: DisposeBag = DisposeBag()
     
     private let vm: ProfileViewModel
@@ -42,10 +45,13 @@ final class ProfileViewController: BaseViewController {
                     name: user.nickname,
                     email: user.email
                 )
-                owner.profileImgView.loadImage(
-                    with: user.profileImage,
-                    defaultImg: UIImage(named: "BasicProfileImage")
-                )
+                guard let imgPath = user.profileImage else {
+                    owner.profileImgView.image = UIImage(named: "BasicProfileImage")
+                    return
+                }
+                Task {
+                    owner.profileImgView.image = try await owner.cache.loadImg(urlPath: imgPath)
+                }
             }
             .disposed(by: disposeBag)
     }

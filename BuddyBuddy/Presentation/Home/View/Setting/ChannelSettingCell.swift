@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 
 final class ChannelSettingCell: BaseTableViewCell {
+    @Dependency(CacheManager.self)
+    private var cache: CacheManager
     private let profileImgView: UIImageView = {
         let view = UIImageView()
         view.clipsToBounds = true
@@ -45,13 +47,14 @@ final class ChannelSettingCell: BaseTableViewCell {
     }
     
     func setProfileUI(profileImg: String?, profileName: String) {
-        profileImgView.loadImage(
-            with: profileImg,
-            defaultImg: UIImage(
-                named: "BasicProfileImage"
-            )
-        )
         nameLabel.text = profileName
+        guard let imgPath = profileImg else {
+            profileImgView.image = UIImage(named: "BasicProfileImage")
+            return
+        }
+        Task {
+            profileImgView.image = try await cache.loadImg(urlPath: imgPath)
+        }
     }
     
     override func layoutSubviews() {

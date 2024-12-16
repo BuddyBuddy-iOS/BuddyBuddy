@@ -8,10 +8,7 @@
 import UIKit
 
 final class CacheManager {
-    static let shared = CacheManager()
-    
-    @Dependency(NetworkProtocol.self)
-    private var networkService: NetworkProtocol
+    private let networkService: NetworkProtocol
     private let fileManager = FileManager.default
     private let cache = NSCache<NSString, UIImage>()
     private let diskPath: String = {
@@ -25,7 +22,9 @@ final class CacheManager {
         return path
     }()
     
-    private init() { }
+    init(networkService: NetworkProtocol) {
+        self.networkService = networkService
+    }
     
     func loadImg(urlPath: String) async throws -> UIImage {
         let path = urlPath.replacingOccurrences(

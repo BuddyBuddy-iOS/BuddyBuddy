@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 
 final class ChannelAdminTableViewCell: BaseTableViewCell {
+    @Dependency(CacheManager.self)
+    private var cache: CacheManager
     private let profileImgView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
@@ -75,10 +77,10 @@ final class ChannelAdminTableViewCell: BaseTableViewCell {
         profileNameLabel.text = name
         emailLabel.text = email
         
-        guard let imgString = profile else {
-            return
-        }
+        guard let imgPath = profile else { return }
         
-        profileImgView.loadImage(with: imgString)
+        Task {
+            profileImgView.image = try await cache.loadImg(urlPath: imgPath)
+        }
     }
 }

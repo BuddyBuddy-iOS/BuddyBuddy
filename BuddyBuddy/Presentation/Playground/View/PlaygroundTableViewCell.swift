@@ -11,6 +11,8 @@ import Nuke
 import SnapKit
 
 final class PlaygroundTableViewCell: BaseTableViewCell {
+    @Dependency(CacheManager.self)
+    private var cache: CacheManager
     private let containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 8
@@ -88,6 +90,9 @@ final class PlaygroundTableViewCell: BaseTableViewCell {
         dateLabel.text = data.createdAt.toDate(format: .defaultDate)?.toString(format: .simpleDate)
         let isHighlight = UserDefaultsManager.playgroundID == data.workspaceID
         containerView.backgroundColor = isHighlight ? .white : .clear
-        corverImgView.loadImage(with: data.coverImage)
+        guard let imgPath = data.coverImage else { return }
+        Task {
+            corverImgView.image = try await cache.loadImg(urlPath: imgPath)
+        }
     }
 }
