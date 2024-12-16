@@ -15,10 +15,9 @@ extension AppDelegate {
         let networkService: NetworkProtocol = NetworkService()
         let socketService: SocketProtocol = SocketService()
         
-        // MARK: 기능 추가시 빠질 형태.
         DIContainer.register(
-            type: NetworkProtocol.self,
-            NetworkService()
+            type: CacheManager.self,
+            CacheManager(networkService: networkService)
         )
         
         DIContainer.register(

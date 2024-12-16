@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 
 final class ChannelAdminTableViewCell: BaseTableViewCell {
+    @Dependency(CacheManager.self)
+    private var cache: CacheManager
     private let profileImgView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
@@ -68,16 +70,17 @@ final class ChannelAdminTableViewCell: BaseTableViewCell {
     }
     
     func setUserProfile(
-        profileData: Data?,
+        profile: String?,
         name: String,
         email: String
     ) {
-        if profileData == nil {
-            profileImgView.image = UIImage(named: "BasicProfileImage")
-        } else {
-            profileImgView.image = profileData?.toUIImage()
-        }
         profileNameLabel.text = name
         emailLabel.text = email
+        
+        guard let imgPath = profile else { return }
+        
+        Task {
+            profileImgView.image = try await cache.loadImg(urlPath: imgPath)
+        }
     }
 }

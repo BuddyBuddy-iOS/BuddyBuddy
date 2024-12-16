@@ -89,7 +89,7 @@ final class SearchViewController: BaseNavigationViewController {
             .disposed(by: disposeBag)
         
         output.searchedResult
-            .drive(searchedResult.searchResultTableView.rx.items) { tableView, index, value in
+            .drive(searchedResult.searchResultTableView.rx.items) { (tableView: UITableView, index, value) in
                 switch value {
                 case .channel(let channel):
                     tableView.rowHeight = 41
@@ -108,7 +108,7 @@ final class SearchViewController: BaseNavigationViewController {
                     ) as? SearchUserTableViewCell else { return UITableViewCell() }
                     cell.setupUI(
                         nickname: user.name,
-                        profile: user.image
+                        profile: user.file
                     )
                     return cell
                 }

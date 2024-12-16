@@ -15,4 +15,5 @@ protocol HomeCoordinator: Coordinator {
     func toChannelDM(channelID: String)
     func toAddChannel()
     func toPlayground()
+    func dismissModal()
 }

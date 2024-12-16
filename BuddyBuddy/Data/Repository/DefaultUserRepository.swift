@@ -49,20 +49,6 @@ final class DefaultUserRepository: UserRepositoryInterface {
         }
     }
     
-    func getUserProfileImage(imagePath: String?) -> Single<Result<Data?, Error>> {
-        guard let imagePath else { return Single.just(.success(nil)) }
-        let router = UserRouter.userProfileImage(path: imagePath)
-        return networkService.downloadImage(router: router)
-            .map { result in
-                switch result {
-                case .success(let data):
-                    return .success(data)
-                case .failure(let error):
-                    return .failure(error)
-                }
-            }
-    }
-    
     func loginWithApple(query: AppleLoginQuery) -> Single<Result<Bool, Error>> {
         return networkService.callRequest(
             router: UserRouter.appleLogin(query: query),
