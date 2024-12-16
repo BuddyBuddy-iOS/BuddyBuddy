@@ -153,13 +153,6 @@ final class ChannelSettingViewController: BaseViewController {
         view.backgroundColor = .clear
     }
     
-//    @objc func handleTap(_ gesture: UITapGestureRecognizer) {
-//        let tapLocation = gesture.location(in: view)
-//        if !settingContainerView.frame.contains(tapLocation) {
-//            tapGesture.accept(())
-//        }
-//    }
-    
     private func setExitAlertHidden(_ show: Bool) {
         exitAlert.isHidden = show ? false : true
     }
@@ -167,7 +160,6 @@ final class ChannelSettingViewController: BaseViewController {
 
 extension ChannelSettingViewController: SideMenuHandler {
     @objc func dismissNotification() {
-        print("헤")
         tapGesture.accept(())
     }
 }
