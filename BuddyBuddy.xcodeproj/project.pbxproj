@@ -66,6 +66,7 @@
 		C90828642CDA75CF0096BA0D /* RxKakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = C90828632CDA75CF0096BA0D /* RxKakaoSDKCommon */; };
 		C90828662CDA780D0096BA0D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C90828652CDA780D0096BA0D /* Localizable.xcstrings */; };
 		C90828682CDA78770096BA0D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90828672CDA78770096BA0D /* String+.swift */; };
+		C908D84C2D0F31C70067E1FB /* InstanceCountHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C908D84B2D0F31C70067E1FB /* InstanceCountHelper.swift */; };
 		C90FEE762CF5D065008819AF /* AlertLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90FEE752CF5D065008819AF /* AlertLiteral.swift */; };
 		C90FEE782CF60386008819AF /* ChannelChatQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90FEE772CF60386008819AF /* ChannelChatQuery.swift */; };
 		C90FEE7A2CF604DF008819AF /* ChannelChatResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90FEE792CF604DF008819AF /* ChannelChatResponseDTO.swift */; };
@@ -310,6 +311,7 @@
 		C908285E2CDA72B50096BA0D /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C90828652CDA780D0096BA0D /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C90828672CDA78770096BA0D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		C908D84B2D0F31C70067E1FB /* InstanceCountHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceCountHelper.swift; sourceTree = "<group>"; };
 		C90FEE752CF5D065008819AF /* AlertLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLiteral.swift; sourceTree = "<group>"; };
 		C90FEE772CF60386008819AF /* ChannelChatQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatQuery.swift; sourceTree = "<group>"; };
 		C90FEE792CF604DF008819AF /* ChannelChatResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatResponseDTO.swift; sourceTree = "<group>"; };
@@ -735,6 +737,7 @@
 		C90827D12CDA4CC10096BA0D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C908D84D2D0F47E40067E1FB /* Helper */,
 				C9F20F382CDB5F030043351E /* Enum */,
 				C908283D2CDA66850096BA0D /* Protocol */,
 				C908283C2CDA667E0096BA0D /* Extension */,
@@ -1188,6 +1191,14 @@
 				C908283B2CDA66760096BA0D /* DIContainer */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		C908D84D2D0F47E40067E1FB /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C908D84B2D0F31C70067E1FB /* InstanceCountHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		C91F672F2CEE439100C84265 /* User */ = {
@@ -1722,6 +1733,7 @@
 				DC9375752CEE081D00012F43 /* DefaultSocketRepository.swift in Sources */,
 				C9F20F622CDB70730043351E /* DMCoordinator.swift in Sources */,
 				C97955362D0AD6630033EA15 /* Notification+.swift in Sources */,
+				C908D84C2D0F31C70067E1FB /* InstanceCountHelper.swift in Sources */,
 				DC9375602CEC67D900012F43 /* DMRealmTable.swift in Sources */,
 				C0BF42932CE47A6100C5B5B4 /* ChannelTableViewCell.swift in Sources */,
 				DC9BC0DB2CE8DE9E002AF523 /* NetworkProtocol.swift in Sources */,

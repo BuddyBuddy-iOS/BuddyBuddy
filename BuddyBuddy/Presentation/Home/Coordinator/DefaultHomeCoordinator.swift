@@ -12,6 +12,7 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     private var channelUseCase: ChannelUseCaseInterface
     @Dependency(PlaygroundUseCaseInterface.self)
     private var playgroundUseCase: PlaygroundUseCaseInterface
+    
     var parent: Coordinator?
     var childs: [Coordinator] = []
     var navigationController: UINavigationController
@@ -77,7 +78,7 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     func toChannelAdmin(channelID: String) {
         let vc = ChannelAdminViewController(vm: ChangeAdminViewModel(
             coordinator: self,
-            useCase: DefaultChannelUseCase(),
+            useCase: channelUseCase,
             channelID: channelID
         ))
         naviForChannelAmdin.navigationBar.isHidden = true
@@ -131,7 +132,7 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     func toChannelDM(channelID: String) {
         let vc = ChannelChattingViewController(vm: ChannelChattingViewModel(
             coordinator: self,
-            channelUseCase: DefaultChannelUseCase(),
+            channelUseCase: channelUseCase,
             channelID: channelID
         ))
         vc.hidesBottomBarWhenPushed = true
