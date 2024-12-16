@@ -27,18 +27,28 @@
 #### Clean Architecture
 ![Clean Architecture](Documents/BuddyCleanArchitecture.png)
 - Data, Domain, Presentation 영역으로 분리
-- Data영역에는 서버와 통신, 채팅 DB관리, 소켓통신 관리
-- Domain영역에는 repository에 있는 함수들을 조합하여 usecase를 정의하고 view에서 사용될 데이터 모델을 구성
-- Presentation영역에는 usecase로 부터 얻은 데이터를 이용하여 뷰를 업데이트
+- Data: 서버와 통신, 채팅 DB관리, 소켓통신 관리
+- Domain: repository에 있는 함수들을 조합하여 usecase를 정의하고 view에서 사용될 데이터 모델을 구성
+- Presentation: UseCase를 통해 받은 데이터를 viewModel의 input, output을 통해 view로 전달하며, 단방향 데이터 플로우를 구성 *
+  - input: 사용자의 입력과 이벤트를 받아 상태 변경 *
+  - output: 변경된 상태와 데이터를 view에 전달하여 UI 업데이트 *
 
 #### Coordinator Pattern
 ![Coordinator Pattern](Documents/BuddyCoordinator.png)
+- 기존 ViewController 내부에서 화면 전환을 처리할 경우, 다른 ViewController와 높은 결합도 생성
+- Coordinator 객체를 두고 화면 전환만을 담당하게 만들어, 결합도를 낮추고 화면 전환 로직 분리 시도
 
 #### DIContainer
+- 필요한 객체를 매번 생성하여 주입하는 과정에서 발생하는 비효율성과 객체 생성 비용의 낭비 발생 *
+- 의존성을 일관되게 관리하고 재사용 가능한 구조를 만들기 위해 DIContainer를 도입 *
 - usecase와 repository의 의존성 주입을 매번 해주는 번거로움을 줄이기 위해 DIContainer 도입
 - 많이 사용되는 usecase와 repository 객체를 저장하고 필요 시 가져다 쓸 수 있도록 딕셔너리 형태로 구현
 
 ## 핵심 기능
+| 플레이그라운드 목록 | 채널 채팅 | 유저 검색 후 DM 화면전환 | 실시간 채팅 |
+| --- | --- | --- | --- |
+|<img src="Documents/BuddyWorkspace.gif" height="300">| <img src="Documents/ChannelDM.png" height="300">| <img src="Documents/BuddySearchToDM.gif" height="300">| <img src="Documents/BuddyPersonalDM.gif" height="300"> |
+
 - (그룹, 개인) 채팅
 - 소셜 로그인
 - 유저, 채널 검색
