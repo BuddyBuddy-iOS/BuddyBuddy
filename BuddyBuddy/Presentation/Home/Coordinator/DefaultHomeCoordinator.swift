@@ -21,6 +21,11 @@ final class DefaultHomeCoordinator: HomeCoordinator {
         channelUseCase: channelUseCase, 
         playgroundUseCase: playgroundUseCase
     )
+    private let slideType: SlideType = .trailing
+    private var channelSettingVM: ChannelSettingViewModel?
+    private var presentation: SlidePresentationController?
+    private var manager: SlideInPresentationManager?
+    private var naviForChannelAmdin = UINavigationController()
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -35,14 +40,35 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     }
     
     func toChannelSetting(channelID: String) {
-        let vc = ChannelSettingViewController(vm: ChannelSettingViewModel(
-            coordinator: self, 
-            useCase: DefaultChannelUseCase(),
+        channelSettingVM = ChannelSettingViewModel(
+            coordinator: self,
+            useCase: channelUseCase,
             channelID: channelID
-        ))
+        )
+        
+        guard let channelSettingVM else { return }
+        let vc = ChannelSettingViewController(vm: channelSettingVM)
+        
+        presentation = SlidePresentationController(
+            presentedViewController: vc,
+            presenting: nil,
+            type: slideType
+        )
+        presentation?.sideMenuDelegate = vc
+        
+        guard let presentation else { return }
+        
+        manager = SlideInPresentationManager(
+            presentationController: presentation,
+            type: slideType
+        )
+        
         vc.hidesBottomBarWhenPushed = true
+        vc.modalPresentationStyle = .custom
+        vc.transitioningDelegate = manager
+        
         navigationController.interactivePopGestureRecognizer?.isEnabled = false
-        navigationController.pushViewController(
+        navigationController.present(
             vc,
             animated: true
         )
@@ -54,16 +80,24 @@ final class DefaultHomeCoordinator: HomeCoordinator {
             useCase: DefaultChannelUseCase(),
             channelID: channelID
         ))
-        vc.modalPresentationStyle = .pageSheet
-        if let sheet = vc.sheetPresentationController {
+        naviForChannelAmdin.navigationBar.isHidden = true
+        naviForChannelAmdin.setViewControllers(
+            [vc],
+            animated: true
+        )
+        naviForChannelAmdin.modalPresentationStyle = .pageSheet
+        if let sheet = naviForChannelAmdin.sheetPresentationController {
             sheet.detents = [.large()]
             sheet.prefersGrabberVisible = true
         }
-        navigationController.present(
-            vc,
-            animated: true
-        )
+        if let presentedVC = navigationController.presentedViewController {
+            presentedVC.present(
+                naviForChannelAmdin,
+                animated: true
+            )
+        }
     }
+    
     func toInviteMember() {
         let vc = InviteMemberViewController(vm: InviteMemberViewModel(coordinator: self))
         vc.modalPresentationStyle = .pageSheet
@@ -76,6 +110,7 @@ final class DefaultHomeCoordinator: HomeCoordinator {
             animated: true
         )
     }
+    
     func toProfile(userID: String) {
         let vc = ProfileViewController(vm: ProfileViewModel(
             coordinator: self,
@@ -135,5 +170,11 @@ final class DefaultHomeCoordinator: HomeCoordinator {
         coordinator.delegate = homeVM
         childs.append(coordinator)
         coordinator.start()
+    }
+    
+    func dismissModal() {
+        if let presentedVC = navigationController.presentedViewController {
+            presentedVC.dismiss(animated: true)
+        }
     }
 }

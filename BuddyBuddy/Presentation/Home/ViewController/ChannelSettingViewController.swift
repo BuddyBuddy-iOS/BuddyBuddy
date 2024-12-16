@@ -18,7 +18,7 @@ final class ChannelSettingViewController: BaseViewController {
     
     private let settingContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         view.clipsToBounds = true
         view.layer.cornerRadius = 16
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
@@ -120,20 +120,14 @@ final class ChannelSettingViewController: BaseViewController {
             settingContainerView.addSubview($0)
         }
         
-        let tapGesture = UITapGestureRecognizer(
-            target: self,
-            action: #selector(handleTap)
-        )
-        view.addGestureRecognizer(tapGesture)
-        
         exitAlert.isHidden = true
     }
     
     override func setConstraints() {
         settingContainerView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(50)
+            make.top.equalTo(safeArea)
             make.bottom.trailing.equalToSuperview()
-            make.width.equalTo(safeArea.snp.width).multipliedBy(0.85)
+            make.width.equalTo(safeArea.snp.width)
         }
         topView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -156,17 +150,16 @@ final class ChannelSettingViewController: BaseViewController {
     override func setView() {
         super.setView()
         
-        view.backgroundColor = .white.withAlphaComponent(0.2)
-    }
-    
-    @objc func handleTap(_ gesture: UITapGestureRecognizer) {
-        let tapLocation = gesture.location(in: view)
-        if !settingContainerView.frame.contains(tapLocation) {
-            tapGesture.accept(())
-        }
+        view.backgroundColor = .clear
     }
     
     private func setExitAlertHidden(_ show: Bool) {
         exitAlert.isHidden = show ? false : true
+    }
+}
+
+extension ChannelSettingViewController: SideMenuHandler {
+    @objc func dismissNotification() {
+        tapGesture.accept(())
     }
 }
