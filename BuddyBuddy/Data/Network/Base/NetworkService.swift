@@ -99,6 +99,29 @@ final class NetworkService: NetworkProtocol {
         }
     }
     
+    func downloadImage(router: TargetType) async throws -> Data {
+        do {
+            let request = try router.asURLRequest()
+            
+            return try await withCheckedThrowingContinuation { continuation in
+                NetworkService.session.download(request)
+                    .validate(statusCode: 200..<300)
+                    .responseData { response in
+                        switch response.result {
+                        case .success(let value):
+                            continuation.resume(returning: value)
+                        case .failure(let error):
+                            print(error)
+                            continuation.resume(throwing: error)
+                        }
+                    }
+            }
+        } catch {
+            print(error)
+            throw error
+        }
+    }
+    
     func callRequest(router: TargetType) -> Single<Result<Void, Error>> {
         return Single.create { observer -> Disposable in
             do {

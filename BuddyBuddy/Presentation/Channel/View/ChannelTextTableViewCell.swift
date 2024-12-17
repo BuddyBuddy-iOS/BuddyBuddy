@@ -12,6 +12,8 @@ import SnapKit
 final class ChannelTextTableViewCell: BaseTableViewCell {
     private let profileImage: ProfileImageView = {
         let view = ProfileImageView()
+        view.clipsToBounds = true
+        view.contentMode = .scaleAspectFit
         view.layer.cornerRadius = 10
         return view
     }()
@@ -61,12 +63,13 @@ final class ChannelTextTableViewCell: BaseTableViewCell {
         speechBubble.snp.makeConstraints { make in
             make.top.equalTo(userName.snp.bottom).offset(8)
             make.leading.equalTo(profileImage.snp.trailing).offset(8)
+            make.trailing.lessThanOrEqualToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(8)
         }
     }
     
     func designCell(_ transition: ChannelHistory) {
-        userName.text = transition.user.nickname
+        userName.text = transition.user.nickname.exceptLang
         chatTime.text = transition.createdAt
             .toDate(format: .defaultDate)?
             .toString(format: .HourMinute)

@@ -114,15 +114,22 @@ final class ChannelChattingViewController: BaseNavigationViewController {
         self.vm = vm
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.isHidden = false
+        navigationController?.setNavigationBarHidden(
+            false,
+            animated: true
+        )
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(
+            true,
+            animated: true
+        )
     }
     
     override func setNavigation() {

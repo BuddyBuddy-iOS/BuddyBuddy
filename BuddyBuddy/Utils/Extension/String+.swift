@@ -38,4 +38,12 @@ extension String {
             return firstMatch != nil
         }
     }
+    
+    var exceptLang: String {
+        return String(self.dropLast(2))
+    }
+    
+    var extractLang: String {
+        return String(self.suffix(2))
+    }
 }

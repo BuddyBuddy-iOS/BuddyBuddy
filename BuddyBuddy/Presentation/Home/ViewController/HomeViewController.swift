@@ -14,7 +14,6 @@ import SnapKit
 
 final class HomeViewController: BaseNavigationViewController {
     private let disposeBag: DisposeBag = DisposeBag()
-    @Dependency(NetworkProtocol.self) private var service: NetworkProtocol
     private let vm: HomeViewModel
     
     private let navigationView: UIView = UIView()
