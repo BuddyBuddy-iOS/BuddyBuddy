@@ -47,13 +47,13 @@
 - 의존성을 일관되게 관리하고 재사용 가능한 구조를 만들기 위해 딕셔너리 형태의 DI 객체 구현
 
 ## 핵심 기능
-<!-- | 플레이그라운드 목록 | 채널 채팅 | 유저 검색 후 DM 화면전환 |
+| 플레이그라운드 목록 | 채널 채팅 | 유저 검색 후 DM 화면전환 |
 | --- | --- | --- |
 |<img src="Documents/BuddyWorkspace.gif" height="300">| <img src="Documents/ChannelDM.png" height="300">| <img src="Documents/BuddySearchToDM.gif" height="300">|
 
 | 실시간 채팅 | 실시간 채팅 목록 갱신 |
 | --- | --- |
-| <img src="Documents/BuddyPersonalDM.gif" height="300"> | <img src="Documents/BuddyRenewing.gif" height="300"> | -->
+| <img src="Documents/BuddyPersonalDM.gif" height="300"> | <img src="Documents/BuddyRenewing.gif" height="300"> |
 
 - (그룹, 개인) 채팅
 - 소셜 로그인
