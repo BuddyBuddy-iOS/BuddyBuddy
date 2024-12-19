@@ -78,7 +78,6 @@ final class DMListViewController: BaseNavigationViewController {
         let toDMChattingTrigger = PublishSubject<DMListInfo>()
         
         let input = DMListViewModel.Input(
-            viewWillAppearTrigger: rx.viewWillAppear,
             toDMChatting: toDMChattingTrigger
         )
         let output = vm.transform(input: input)

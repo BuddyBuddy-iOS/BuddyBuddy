@@ -28,8 +28,8 @@ struct ChannelHistoryResponseDTO: Decodable {
 }
 
 extension ChannelHistoryResponseDTO {
-    func toDomain() -> ChannelHistoryString {
-        return ChannelHistoryString(
+    func toDomain() -> ChannelHistory {
+        return ChannelHistory(
             channelID: channelID,
             channelName: channelName,
             chatID: chatID,

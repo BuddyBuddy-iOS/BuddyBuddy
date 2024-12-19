@@ -22,8 +22,8 @@ final class AppCoordinator: Coordinator {
             object: nil
         )
         
-//        KeyChainManager.shared.deleteAccessToken()
-//        KeyChainManager.shared.deleteRefreshToken()
+        KeyChainManager.shared.deleteAccessToken()
+        KeyChainManager.shared.deleteRefreshToken()
     }
     
     deinit {

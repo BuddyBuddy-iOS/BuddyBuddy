@@ -26,12 +26,3 @@ extension DMListDTO {
                       user: user.toDomain())
     }
 }
-
-extension UserInfoDTO {
-    func toDomain() -> UserInfo {
-        return UserInfo(userID: userID,
-                        email: email,
-                        nickname: nickname,
-                        profileImage: profileImage)
-    }
-}

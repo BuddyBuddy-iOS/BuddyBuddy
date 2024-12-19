@@ -25,7 +25,6 @@ final class DMListViewModel: ViewModelType {
     }
     
     struct Input {
-        let viewWillAppearTrigger: Observable<Void>
         let toDMChatting: Observable<DMListInfo>
     }
     
@@ -37,11 +36,14 @@ final class DMListViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         let updateDMListTableView = PublishSubject<[DMListInfo]>()
         let viewState = PublishSubject<DMListState>()
-        let timer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+        let timer = Observable.concat(
+            Observable.just(0),
+            Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+        )
         
         timer
             .withUnretained(self)
-            .flatMapLatest { (owner, _) in
+            .flatMap { (owner, _) in
                 owner.dmUseCase.fetchDMList(
                     playgroundID: UserDefaultsManager.playgroundID
                 )
@@ -57,7 +59,7 @@ final class DMListViewModel: ViewModelType {
                                 roomID: dmList.roomID
                             )
                             .asObservable(),
-                            self.dmUseCase.fetchDMUnRead(
+                            self.dmUseCase.fetchDMUnread(
                                 playgroundID: UserDefaultsManager.playgroundID,
                                 roomID: dmList.roomID
                             )

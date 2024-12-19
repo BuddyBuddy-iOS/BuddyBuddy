@@ -161,15 +161,15 @@ final class DMTextImageTableViewCell: BaseTableViewCell {
         imageType(dataArray: transition.files)
     }
     
-    private func imageType(dataArray: [Data]) {
+    private func imageType(dataArray: [String]) {
         switch dataArray.count {
         case 1:
             let imageViews: [UIImageView] = [topImageView]
-            for (imageView, data) in zip(imageViews, dataArray) {
-                if let image = UIImage(data: data) {
-                    imageView.image = image
-                }
-            }
+//            for (imageView, data) in zip(imageViews, dataArray) {
+//                if let image = UIImage(data: data) {
+//                    imageView.image = image
+//                }
+//            }
             middleImageStackView.isHidden = true
             bottomImageStackView.isHidden = true
         case 2:
@@ -180,11 +180,11 @@ final class DMTextImageTableViewCell: BaseTableViewCell {
             bottomImageStackView.isHidden = true
             
             let imageViews: [UIImageView] = [firstImage, secondImage]
-            for (imageView, data) in zip(imageViews, dataArray) {
-                if let image = UIImage(data: data) {
-                    imageView.image = image
-                }
-            }
+//            for (imageView, data) in zip(imageViews, dataArray) {
+//                if let image = UIImage(data: data) {
+//                    imageView.image = image
+//                }
+//            }
         case 3:
             [firstImage, secondImage, thirdImage].forEach {
                 middleImageStackView.addArrangedSubview($0)
@@ -193,11 +193,11 @@ final class DMTextImageTableViewCell: BaseTableViewCell {
             bottomImageStackView.isHidden = true
             
             let imageViews: [UIImageView] = [firstImage, secondImage, thirdImage]
-            for (imageView, data) in zip(imageViews, dataArray) {
-                if let image = UIImage(data: data) {
-                    imageView.image = image
-                }
-            }
+//            for (imageView, data) in zip(imageViews, dataArray) {
+//                if let image = UIImage(data: data) {
+//                    imageView.image = image
+//                }
+//            }
         case 4:
             [firstImage, secondImage].forEach {
                 middleImageStackView.addArrangedSubview($0)
@@ -208,11 +208,11 @@ final class DMTextImageTableViewCell: BaseTableViewCell {
             topImageView.isHidden = true
             
             let imageViews: [UIImageView] = [firstImage, secondImage, thirdImage, fourthImage]
-            for (imageView, data) in zip(imageViews, dataArray) {
-                if let image = UIImage(data: data) {
-                    imageView.image = image
-                }
-            }
+//            for (imageView, data) in zip(imageViews, dataArray) {
+//                if let image = UIImage(data: data) {
+//                    imageView.image = image
+//                }
+//            }
         case 5:
             [firstImage, secondImage].forEach {
                 middleImageStackView.addArrangedSubview($0)
@@ -223,11 +223,11 @@ final class DMTextImageTableViewCell: BaseTableViewCell {
             topImageView.isHidden = true
             
             let imageViews: [UIImageView] = [firstImage, secondImage, thirdImage, fourthImage, fifthImage]
-            for (imageView, data) in zip(imageViews, dataArray) {
-                if let image = UIImage(data: data) {
-                    imageView.image = image
-                }
-            }
+//            for (imageView, data) in zip(imageViews, dataArray) {
+//                if let image = UIImage(data: data) {
+//                    imageView.image = image
+//                }
+//            }
         default: 
             break
         }

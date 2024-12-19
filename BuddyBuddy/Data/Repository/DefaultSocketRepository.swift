@@ -30,7 +30,7 @@ final class DefaultSocketRepository: SocketRepositoryInterface {
         socketService.closeConnection()
     }
     
-    func observeDMMessage() -> Observable<DMHistoryString> {
+    func observeDMMessage() -> Observable<DMHistory> {
         socketService.observeDMMessage()
             .map { message in
                 message.toDomain()
@@ -38,7 +38,7 @@ final class DefaultSocketRepository: SocketRepositoryInterface {
             .asObservable()
     }
     
-    func observeChannelMessage() -> Observable<ChannelHistoryString> {
+    func observeChannelMessage() -> Observable<ChannelHistory> {
         socketService.observeChannelMessage()
             .map { message in
                 message.toDomain()

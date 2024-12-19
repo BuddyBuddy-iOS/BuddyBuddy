@@ -44,7 +44,7 @@ final class AuthIntercepter: RequestInterceptor {
                     case .success(let value):
                         KeyChainManager.shared.saveAccessToken(value.accessToken)
                         completion(.retry)
-                    case .failure(let error):
+                    case .failure:
                         guard let errorCode = self.decodeNetworkError(from: response.data) else {
                              return
                         }

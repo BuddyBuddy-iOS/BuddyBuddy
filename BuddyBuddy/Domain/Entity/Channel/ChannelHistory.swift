@@ -13,7 +13,7 @@ struct ChannelHistory {
     let chatID: String
     let content: String
     let createdAt: String
-    let files: [Data]
+    let files: [String]
     let user: UserInfo
 }
 

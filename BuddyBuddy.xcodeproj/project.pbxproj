@@ -104,7 +104,6 @@
 		C91F673F2CEF2F6F00C84265 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91F673E2CEF2F6F00C84265 /* SearchResult.swift */; };
 		C91F67412CEF2F8700C84265 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91F67402CEF2F8700C84265 /* SearchState.swift */; };
 		C91F67442CF098C900C84265 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91F67432CF098C900C84265 /* Data+.swift */; };
-		C948CE9F2D06D10E00C22975 /* DMHistoryString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BC0D42CE8DAA6002AF523 /* DMHistoryString.swift */; };
 		C957EA672CE2095300B62A2A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C957EA662CE2095300B62A2A /* UIViewController+.swift */; };
 		C957EA692CE20C2300B62A2A /* SearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C957EA682CE20C2300B62A2A /* SearchEmptyView.swift */; };
 		C957EA6F2CE21F8A00B62A2A /* RecentSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C957EA6E2CE21F8A00B62A2A /* RecentSearchTableView.swift */; };
@@ -227,7 +226,6 @@
 		DC9BC0DD2CE9BB21002AF523 /* DMUnReadDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BC0DC2CE9BB21002AF523 /* DMUnReadDTO.swift */; };
 		DC9BC0DF2CE9BB4B002AF523 /* DMUnRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BC0DE2CE9BB4B002AF523 /* DMUnRead.swift */; };
 		DC9BC0E52CEA0CAB002AF523 /* KeyChainProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BC0E42CEA0CAB002AF523 /* KeyChainProtocol.swift */; };
-		DC9E80E52CFC552900CF0A54 /* UserInfoString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9E80E42CFC552900CF0A54 /* UserInfoString.swift */; };
 		DCB9ABB02CFE0134006845CF /* DMListInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB9ABAF2CFE0134006845CF /* DMListInfo.swift */; };
 		DCB9ABB82CFE0645006845CF /* ChannelChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB9ABB72CFE0645006845CF /* ChannelChattingViewController.swift */; };
 		DCB9ABBA2CFE078F006845CF /* ChannelChattingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB9ABB92CFE078F006845CF /* ChannelChattingViewModel.swift */; };
@@ -469,12 +467,10 @@
 		DC9BC0CD2CE73EA0002AF523 /* DMRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMRouter.swift; sourceTree = "<group>"; };
 		DC9BC0D02CE765B5002AF523 /* DMListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListState.swift; sourceTree = "<group>"; };
 		DC9BC0D22CE8DA29002AF523 /* DMHistoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMHistoryDTO.swift; sourceTree = "<group>"; };
-		DC9BC0D42CE8DAA6002AF523 /* DMHistoryString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMHistoryString.swift; sourceTree = "<group>"; };
 		DC9BC0DA2CE8DE9E002AF523 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		DC9BC0DC2CE9BB21002AF523 /* DMUnReadDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMUnReadDTO.swift; sourceTree = "<group>"; };
 		DC9BC0DE2CE9BB4B002AF523 /* DMUnRead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMUnRead.swift; sourceTree = "<group>"; };
 		DC9BC0E42CEA0CAB002AF523 /* KeyChainProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainProtocol.swift; sourceTree = "<group>"; };
-		DC9E80E42CFC552900CF0A54 /* UserInfoString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoString.swift; sourceTree = "<group>"; };
 		DCB9ABAF2CFE0134006845CF /* DMListInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListInfo.swift; sourceTree = "<group>"; };
 		DCB9ABB72CFE0645006845CF /* ChannelChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChattingViewController.swift; sourceTree = "<group>"; };
 		DCB9ABB92CFE078F006845CF /* ChannelChattingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChattingViewModel.swift; sourceTree = "<group>"; };
@@ -1445,10 +1441,8 @@
 				DC213A9E2CE36CA700E2A2F7 /* DMList.swift */,
 				DCB9ABAF2CFE0134006845CF /* DMListInfo.swift */,
 				DC9375972CF9E3EC00012F43 /* DMHistory.swift */,
-				DC9BC0D42CE8DAA6002AF523 /* DMHistoryString.swift */,
 				DC9BC0DE2CE9BB4B002AF523 /* DMUnRead.swift */,
 				DC9375632CEC7E6500012F43 /* UserInfo.swift */,
-				DC9E80E42CFC552900CF0A54 /* UserInfoString.swift */,
 				DC9375932CF8973100012F43 /* ChatSection.swift */,
 			);
 			path = DM;
@@ -1672,7 +1666,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C948CE9F2D06D10E00C22975 /* DMHistoryString.swift in Sources */,
 				DCB9ABD92D019EC7006845CF /* AuthRouter.swift in Sources */,
 				C0A35E052CF8516900B41E60 /* AddChannelReqeustDTO.swift in Sources */,
 				DC213AB82CE6186800E2A2F7 /* DMListViewController.swift in Sources */,
@@ -1742,7 +1735,6 @@
 				DCB9ABD82D00AAF5006845CF /* DMNavigationView.swift in Sources */,
 				C91F67412CEF2F8700C84265 /* SearchState.swift in Sources */,
 				C02D93C82CFC6DAB003471B9 /* PlaygroundViewModel.swift in Sources */,
-				DC9E80E52CFC552900CF0A54 /* UserInfoString.swift in Sources */,
 				C957EA6F2CE21F8A00B62A2A /* RecentSearchTableView.swift in Sources */,
 				C91F67312CEE439A00C84265 /* ProfileDTO.swift in Sources */,
 				C9FF81442CFF60940049ED1F /* NetworkError.swift in Sources */,

@@ -22,7 +22,7 @@ protocol DMUseCaseInterface {
         roomID: String
     ) -> Single<Result<[DMHistory], Error>>
     
-    func fetchDMUnRead(
+    func fetchDMUnread(
         playgroundID: String,
         roomID: String
     ) -> Single<Result<DMUnRead, Error>>

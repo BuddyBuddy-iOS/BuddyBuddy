@@ -14,7 +14,7 @@ final class DMHistoryTable: Object {
     @Persisted var roomID: String
     @Persisted var content: String
     @Persisted var createdAt: String
-    @Persisted var files: List<Data> = List()
+    @Persisted var files: List<String> = List()
     @Persisted var user: UserTable?
     
     convenience init(
@@ -22,7 +22,7 @@ final class DMHistoryTable: Object {
         roomID: String,
         content: String,
         createdAt: String,
-        files: List<Data>,
+        files: List<String>,
         user: UserTable
     ) {
         self.init()
